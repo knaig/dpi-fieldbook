@@ -15,7 +15,8 @@ export default function InitPage() {
     if (isHydrated && !isComplete && !isImporting) {
       handleImport();
     }
-  }, [isHydrated, isComplete, isImporting]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHydrated]);
 
   const handleImport = async () => {
     setIsImporting(true);

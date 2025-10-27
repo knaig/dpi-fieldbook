@@ -21,7 +21,12 @@ export default function InitPage() {
   const handleImport = async () => {
     setIsImporting(true);
     try {
-      const res = await fetch('/api/importActors');
+      const res = await fetch('/api/importActors', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       const data = await res.json();
       
       if (data.success && data.actors) {

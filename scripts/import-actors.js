@@ -1,0 +1,61 @@
+// Script to import DPI Summit 2025 actors into the fieldbook
+const actors = [
+  { name: "H.E. Mr. Solly Malatsi", role: "Minister, Government of South Africa", context: "Summit Speaker, Government Track", sector: "Government" },
+  { name: "Halima Letamo", role: "ITU Area Representative for Southern Africa", context: "Panel Moderator - Cities Reimagined", sector: "Multilateral" },
+  { name: "David Hutchison", role: "Lead Digital Governance, World Bank", context: "Digital Development", sector: "Multilateral" },
+  { name: "Michelle Ringuette", role: "Practice Manager Digital Development, World Bank", context: "Country DPI Programs", sector: "Multilateral" },
+  { name: "Srikanth Nadhamuni", role: "Executive Director, Co-Develop", context: "Open-source DPI, Technical Architecture", sector: "Research" },
+  { name: "Tarun Wadhwa", role: "Co-founder & Head of Strategy, Co-Develop", context: "DPI Policy, Ecosystem Building", sector: "Research" },
+  { name: "Doreen Bogdan-Martin", role: "Secretary-General, ITU", context: "Global Standards, Digital Divide", sector: "Multilateral" },
+  { name: "Cosmas Zavazava", role: "Director Telecommunication Development Bureau, ITU", context: "Development, Capacity Building", sector: "Multilateral" },
+  { name: "Stefan Schweinfest", role: "Director UN Statistics Division, UNDP", context: "Data Infrastructure, SDGs", sector: "Multilateral" },
+  { name: "Robert Opp", role: "Chief Digital Officer, UNDP", context: "Digital Transformation, Country Support", sector: "Multilateral" },
+  { name: "Pramod Varma", role: "Chief Architect India Stack", context: "Former UIDAI, India Stack Design", sector: "Government" },
+  { name: "R S Sharma", role: "Former CEO National Health Authority", context: "Former Chairman TRAI, Health DPIs", sector: "Government" },
+  { name: "Nandan Nilekani", role: "Co-founder Infosys, Former Chairman UIDAI", context: "Digital Identity, Financial Inclusion", sector: "Corporate" },
+  { name: "Karrie Karu", role: "Director Information System Authority", context: "e-Governance, Digital Identity", sector: "Government" },
+  { name: "Marten Kaevats", role: "Former National Digital Advisor", context: "Digital Transformation, X-road", sector: "Government" },
+  { name: "Anir Chowdhury", role: "Policy Advisor a2i Programme", context: "Citizen Services, Digital Innovation", sector: "Government" },
+  { name: "Julian Kyula", role: "Director Digital Economy", context: "Financial Inclusion, Digital Payments", sector: "Government" },
+  { name: "Denis Villorente", role: "Undersecretary DICT", context: "National ID, Digital Government", sector: "Government" },
+  { name: "Brian Ngo", role: "Director Digital & Technology, Gavi", context: "Immunization Data Systems", sector: "Multilateral" },
+  { name: "Tiago Cravo Oliveira Hashiguchi", role: "Lead Digital Health, WHO", context: "Health Information Systems", sector: "Multilateral" },
+  { name: "Chris Fabian", role: "Senior Advisor Innovation, UNICEF", context: "Digital Public Goods, AI for Children", sector: "Multilateral" },
+  { name: "Dennis Weller", role: "Director Digital Public Infrastructure, Gates Foundation", context: "DPI Financing, Health Systems", sector: "Funder" },
+  { name: "Elizabeth White", role: "Program Officer Digital Payments, Gates Foundation", context: "Financial Inclusion, Payment Systems", sector: "Funder" },
+  { name: "Zia Khan", role: "Vice President Technology, Rockefeller Foundation", context: "Digital Inclusion, Climate + DPI", sector: "Funder" },
+  { name: "Sarah Hubbard", role: "Program Officer Technology & Society, Ford Foundation", context: "Digital Rights, Inclusive Tech", sector: "Funder" },
+  { name: "Alan Gelb", role: "Senior Fellow, CGD", context: "DPI Economics, ID Systems", sector: "Research" },
+  { name: "Grete Faremo", role: "Executive Director, DIAL", context: "Best Practices, Digital Development", sector: "Research" },
+  { name: "Rajagopalan Rajesh", role: "Chair MOSIP Foundation", context: "Open-source Identity Platform", sector: "Research" },
+  { name: "Anindita Dasgupta", role: "CEO MOSIP Foundation", context: "Digital Identity, Privacy by Design", sector: "Research" },
+  { name: "Sujith Narayanan", role: "CTO Beckn Protocol Foundation", context: "Open Commerce Protocols, DPIs", sector: "Research" },
+  { name: "Andrew Shikiar", role: "Executive Director, FIDO Alliance", context: "Passwordless Authentication, Digital Identity", sector: "Research" },
+  { name: "Carol L Stimmel", role: "Director Digital Public Infrastructure, Microsoft Philanthropies", context: "Cloud for Government", sector: "Corporate" },
+  { name: "Justin Cook", role: "VP Public Sector, Microsoft", context: "Government Cloud Solutions", sector: "Corporate" },
+  { name: "Dorothea Klein", role: "Director Social Impact, Google.org", context: "Digital Skills, AI for Social Good", sector: "Corporate" },
+  { name: "Benjamin Adams", role: "Program Manager Android Go, Google", context: "Affordable Devices, Digital Inclusion", sector: "Corporate" },
+  { name: "Salah Goss", role: "SVP Social Impact, Mastercard Foundation", context: "Financial Inclusion, Digital Payments", sector: "Corporate" },
+  { name: "Estelle Massé", role: "Global Data Protection Lead, Access Now", context: "Privacy, Surveillance, Digital Rights", sector: "NGO" },
+  { name: "Laura O'Brien", role: "Senior Policy Analyst, Access Now", context: "Human Rights, DPI Governance", sector: "NGO" },
+  { name: "Sunil Abraham", role: "Executive Director, CIS", context: "Digital Rights, Privacy", sector: "Research" },
+  { name: "Nicole Anand", role: "Executive Director, CIVIC", context: "Data Governance, Responsible Tech", sector: "Research" },
+  { name: "Rajesh Aggarwal", role: "Professor Digital Identity", context: "Identity Systems, Privacy", sector: "Research" },
+  { name: "Amir Alexander Hasson", role: "Professor Digital Development", context: "DPI Implementation", sector: "Research" },
+];
+
+// This will be used by the browser to import actors
+// We'll create a JSON file that the app can load
+const fs = require('fs');
+const path = require('path');
+
+const jsonData = JSON.stringify(actors, null, 2);
+const outputPath = path.join(__dirname, '../public/actors.json');
+
+fs.writeFileSync(outputPath, jsonData);
+console.log(`Created ${outputPath} with ${actors.length} actors`);
+console.log('\nActors ready to import:');
+actors.forEach((actor, i) => {
+  console.log(`${i + 1}. ${actor.name} (${actor.sector})`);
+});
+

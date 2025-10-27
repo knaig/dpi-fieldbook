@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Users, Lightbulb, Download, Import as ImportIcon } from 'lucide-react';
+import { Home, Users, Lightbulb, Download, Import as ImportIcon, Sparkles } from 'lucide-react';
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: Home },
@@ -10,6 +10,7 @@ const navItems = [
   { href: '/reflect', label: 'Reflect', icon: Lightbulb },
   { href: '/import', label: 'Import', icon: ImportIcon },
   { href: '/export', label: 'Export', icon: Download },
+  { href: '/init', label: 'Init', icon: Sparkles },
 ];
 
 export default function NavBar() {

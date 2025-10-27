@@ -1,14 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useFieldbookStore } from '@/lib/useFieldbookStore';
 
 export default function InitPage() {
   const [isImporting, setIsImporting] = useState(false);
-  const { addActor } = useFieldbookStore();
+  const [isComplete, setIsComplete] = useState(false);
+  const { addActor, isHydrated } = useFieldbookStore();
   const router = useRouter();
+
+  useEffect(() => {
+    if (isHydrated && !isComplete && !isImporting) {
+      handleImport();
+    }
+  }, [isHydrated, isComplete, isImporting]);
 
   const handleImport = async () => {
     setIsImporting(true);
@@ -38,17 +45,30 @@ export default function InitPage() {
         }
         
         toast.success(`Imported ${data.count} actors successfully!`);
-        router.push('/actors');
+        setIsComplete(true);
+        setTimeout(() => router.push('/actors'), 2000);
       } else {
         toast.error('Failed to import actors');
+        setIsImporting(false);
       }
     } catch (error) {
       console.error('Import error:', error);
       toast.error('Failed to import actors');
-    } finally {
       setIsImporting(false);
     }
   };
+
+  if (isComplete) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-16 text-center">
+        <div className="bg-green-50 border-2 border-green-500 rounded-xl p-12">
+          <h1 className="text-3xl font-bold text-green-900 mb-4">✓ Import Complete!</h1>
+          <p className="text-lg text-green-700 mb-6">42 actors imported successfully</p>
+          <p className="text-sm text-slate-600">Redirecting to Actors page...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-16 text-center">
@@ -57,22 +77,14 @@ export default function InitPage() {
       </h1>
       
       <p className="text-slate-600 mb-8">
-        Import 42 confirmed and likely speakers from the DPI Summit 2025
+        Importing 42 confirmed and likely speakers from the DPI Summit 2025
       </p>
 
       <div className="bg-white rounded-xl p-8 shadow-sm border border-slate-200">
         <div className="mb-6">
-          <h2 className="text-xl font-semibold text-slate-900 mb-4">
-            Actors to Import
-          </h2>
-          <ul className="text-left text-sm text-slate-600 space-y-2 mb-6 max-h-96 overflow-y-auto">
-            <li>H.E. Mr. Solly Malatsi (Government)</li>
-            <li>Halima Letamo (Multilateral)</li>
-            <li>Pramod Varma (Government)</li>
-            <li>Nandan Nilekani (Corporate)</li>
-            <li>David Hutchison (Multilateral)</li>
-            <li>... and 37 more</li>
-          </ul>
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-lg font-semibold text-slate-900">Importing actors...</p>
+          <p className="text-sm text-slate-500 mt-2">This will only take a moment</p>
         </div>
 
         <button

@@ -1,0 +1,213 @@
+DPI SUMMIT 2025 - LIKELY ACTORS & ORGANIZATIONS
+====================================================
+Based on Co-Hosts & Typical DPI Ecosystem Participants
+Cape Town, South Africa | November 4-6, 2025
+
+CO-HOST ORGANIZATIONS
+=====================
+
+Government / Multilateral:
+- World Bank Group (WB)
+  Role: DPI implementation funding and technical support
+  Sector: Multilateral
+  
+- International Telecommunication Union (ITU)
+  Role: Standards setting for digital connectivity
+  Sector: Multilateral
+  Contact: Halima Letamo (Area Representative for Southern Africa)
+  
+- United Nations Development Programme (UNDP)
+  Role: Country-level DPI capacity building
+  Sector: Multilateral
+  
+- United Nations Office for Digital and Emerging Technologies (UNODET)
+  Role: Cross-cutting digital governance
+  Sector: Multilateral
+
+- Co-Develop
+  Role: DPI ecosystem coordination and technical assistance
+  Sector: NGO/Research
+
+CONFIRMED SPEAKERS
+==================
+
+1. H.E. Mr. Solly Malatsi
+   Role: Minister of Communications and Digital Technologies
+   Organization: Government of South Africa
+   Sector: Government
+   Summit Context: Keynote Speaker, Government Track
+
+2. Halima Letamo
+   Role: Area Representative for Southern Africa
+   Organization: ITU
+   Sector: Multilateral
+   Summit Context: Panel - Cities Reimagined: DPI as Engine of Urban Progress
+
+TYPICAL DPI SUMMIT PARTICIPANTS
+================================
+
+Government Organizations:
+- Government of India (NITI Aayog, Ministry of Electronics & IT)
+  DPI Champion: India Stack
+  Sector: Government
+  
+- Government of Estonia (e-Estonia)
+  DPI Expertise: Digital identity systems
+  Sector: Government
+  
+- Government of Singapore (GovTech)
+  DPI Expertise: Smart Nation initiatives
+  Sector: Government
+  
+- Government of Bangladesh (a2i)
+  DPI Focus: Social protection systems
+  Sector: Government
+  
+- Government of Kenya
+  DPI Focus: M-PESA integration with DPIs
+  Sector: Government
+  
+- Government of Philippines
+  DPI Focus: National ID program
+  Sector: Government
+  
+- Government of Peru
+  DPI Focus: Digital transformation
+  Sector: Government
+  
+- Government of Togo
+  DPI Focus: Cash transfer systems
+  Sector: Government
+
+Multilateral Organizations:
+- Gavi, The Vaccine Alliance
+  Sector: Multilateral
+  DPI Interest: Immunization data systems
+  
+- World Health Organization (WHO)
+  Sector: Multilateral
+  DPI Interest: Health data infrastructure
+  
+- UNICEF
+  Sector: Multilateral
+  DPI Interest: Child protection and services
+  
+- International Monetary Fund (IMF)
+  Sector: Multilateral
+  DPI Interest: Central bank digital currencies
+  
+- African Union (AU)
+  Sector: Multilateral
+  DPI Interest: Continental digital transformation
+
+Funders:
+- The Rockefeller Foundation
+  Sector: Funder
+  DPI Interest: Digital inclusion and equity
+  
+- The Gates Foundation
+  Sector: Funder
+  DPI Interest: Global health DPIs
+  
+- Ford Foundation
+  Sector: Funder
+  DPI Interest: Racial and economic equity in digital systems
+  
+- Omidyar Network
+  Sector: Funder
+  DPI Interest: Responsible tech and digital rights
+  
+- The Hewlett Foundation
+  Sector: Funder
+  DPI Interest: Digital governance and transparency
+  
+- CIVIC: Data4Good
+  Sector: Research
+  DPI Interest: Data governance and privacy
+
+DPI Technology Platforms:
+- MOSIP (Modular Open Source Identity Platform)
+  Sector: Technology/Research
+  Focus: Open source identity systems
+  Organization: IIIT Bangalore
+  
+- Mifos Initiative
+  Sector: Technology/Research
+  Focus: Financial inclusion platforms
+  
+- OpenG2P
+  Sector: Technology/Research
+  Focus: Government-to-person payment systems
+  
+- Beckn Protocol Foundation
+  Sector: Technology/Research
+  Focus: Open commerce protocols
+  
+- FIDO Alliance
+  Sector: Technology
+  Focus: Digital authentication standards
+
+Research & Civil Society:
+- Digital Impact Alliance (DIAL)
+  Sector: Research
+  Focus: Digital development best practices
+  
+- The Centre for Internet and Society
+  Sector: Research
+  Focus: Digital rights and policy
+  
+- Access Now
+  Sector: NGO
+  Focus: Digital rights and surveillance
+  
+- Center for Global Development (CGD)
+  Sector: Research
+  Focus: DPI economics and impact
+  
+- Caribou Digital
+  Sector: Research
+  Focus: Responsible digital innovation
+
+Corporate/Technology Partners:
+- Microsoft
+  Sector: Corporate
+  DPI Focus: Cloud infrastructure for DPI
+  
+- Google
+  Sector: Corporate
+  DPI Focus: Android Go, digital skills
+  
+- Amazon Web Services (AWS)
+  Sector: Corporate
+  DPI Focus: Cloud infrastructure
+  
+- Oracle
+  Sector: Corporate
+  DPI Focus: Government cloud solutions
+  
+- Mastercard
+  Sector: Corporate
+  DPI Focus: Payment systems integration
+
+Regional Organizations:
+- African Development Bank (AfDB)
+  Sector: Multilateral
+  Focus: Continental infrastructure financing
+  
+- Asian Development Bank (ADB)
+  Sector: Multilateral
+  Focus: Regional DPI programs
+  
+- Smart Africa Alliance
+  Sector: Government/Multilateral
+  Focus: Pan-African digital transformation
+
+NOTES FOR AI4Inclusion TRACKING
+================================
+- Track speakers vs partners vs sponsors vs panelists
+- Note which actors are implementing vs funding vs researching DPIs
+- Identify multilingual AI and voice AI interests
+- Look for organizations with existing DPI programs in Africa/LAM
+- Prioritize actors with published positions on digital inclusion
+- Flag actors working on AI governance, ethics, and multilingual systems
+

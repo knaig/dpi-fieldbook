@@ -1,0 +1,348 @@
+DPI SUMMIT 2025 - CONFIRMED & LIKELY SPEAKERS/PARTICIPANTS
+===========================================================
+Cape Town, South Africa | November 4-6, 2025
+Individual People at the Summit (for AI4Inclusion tracking)
+
+CONFIRMED SPEAKERS
+==================
+
+1. H.E. Mr. Solly Malatsi
+   Role: Minister of Communications and Digital Technologies
+   Organization: Government of South Africa
+   Sector: Government
+   Contact Role: Minister
+   Summit Context: Keynote Speaker, Government Track
+   Booth/Location: TBD - Host country minister
+   
+2. Halima Letamo
+   Role: Area Representative for Southern Africa
+   Organization: International Telecommunication Union (ITU)
+   Sector: Multilateral
+   Contact Role: Representative
+   Summit Context: Panel Moderator - "Cities Reimagined: DPI as Engine of Urban Progress"
+   Booth/Location: TBD - ITU booth
+   Interest: Urban DPI, Smart cities, Connectivity
+
+LIKELY CO-HOST REPRESENTATIVES
+==============================
+
+World Bank Group:
+- David Hutchison (likely)
+  Role: Lead, Digital Governance & Infrastructure
+  Department: Digital Development
+  Sector: Multilateral
+  Interest: DPI financing, Governance frameworks
+  
+- Michelle Ringuette (likely)
+  Role: Practice Manager, Digital Development
+  Department: World Bank
+  Sector: Multilateral
+  Interest: Country DPI programs, Technical assistance
+
+Co-Develop:
+- Srikanth Nadhamuni (Executive Director)
+  Role: Executive Director & Co-founder
+  Organization: Co-Develop
+  Sector: NGO/Research
+  Interest: Open-source DPI, Technical architecture
+  
+- Tarun Wadhwa (Co-founder & Head of Strategy)
+  Role: Co-founder
+  Organization: Co-Develop
+  Sector: NGO/Research
+  Interest: DPI policy, Ecosystem building
+
+ITU:
+- Doreen Bogdan-Martin (likely)
+  Role: Secretary-General
+  Organization: ITU
+  Sector: Multilateral
+  Interest: Global standards, Digital divide
+  
+- Cosmas Zavazava (Director)
+  Role: Director, Telecommunication Development Bureau
+  Organization: ITU
+  Sector: Multilateral
+  Interest: Development, Capacity building
+  
+- Halima Letamo (CONFIRMED)
+  Already listed above
+
+UNDP:
+- Stefan Schweinfest (likely)
+  Role: Director, UN Statistics Division
+  Organization: UNDP
+  Sector: Multilateral
+  Interest: Data infrastructure, SDGs
+  
+- Robert Opp (likely)
+  Role: Chief Digital Officer
+  Organization: UNDP
+  Sector: Multilateral
+  Interest: Digital transformation, Country support
+
+GOVERNMENT LEADERS (Likely Attendees)
+======================================
+
+India:
+- Pramod Varma (likely)
+  Role: Former Chief Architect, Aadhaar & India Stack
+  Organization: Government of India (Consultant)
+  Sector: Government
+  Interest: Digital identity, Payments, Open APIs
+  Expertise: India Stack architecture, DPI design
+  
+- R S Sharma (likely)
+  Role: Former CEO, National Health Authority; Former Chairman, TRAI
+  Organization: Government of India
+  Sector: Government
+  Interest: Health DPIs, Digital governance
+  
+- Nandan Nilekani (possible)
+  Role: Co-founder Infosys; Former Chairman UIDAI
+  Organization: Infosys / Recko
+  Sector: Corporate/Government
+  Interest: Digital identity, Financial inclusion
+
+Estonia:
+- Karrie Karu (likely)
+  Role: Director, Information System Authority
+  Organization: Government of Estonia
+  Sector: Government
+  Interest: Digital identity, e-Governance
+  
+- Marten Kaevats (likely)
+  Role: Former National Digital Advisor
+  Organization: Government of Estonia
+  Sector: Government
+  Interest: Digital transformation, X-road
+
+Bangladesh:
+- Anir Chowdhury (likely)
+  Role: Policy Advisor, a2i Programme
+  Organization: Government of Bangladesh
+  Sector: Government
+  Interest: Citizen services, Digital innovation
+
+Kenya:
+- Julian Kyula (likely)
+  Role: Director, Digital Economy
+  Organization: Government of Kenya
+  Sector: Government
+  Interest: Financial inclusion, Digital payments
+
+Philippines:
+- Undersecretary Denis Villorente (likely)
+  Role: Undersecretary
+  Organization: DICT Philippines
+  Sector: Government
+  Interest: National ID, Digital government
+
+MULTILATERAL LEADERS
+=====================
+
+Gavi:
+- Brian Ngo (likely)
+  Role: Director, Digital & Technology
+  Organization: Gavi
+  Sector: Multilateral
+  Interest: Immunization data systems, Digital health
+  
+- Carl Manlan (likely)
+  Role: Director, Technology Innovation
+  Organization: Gavi
+  Sector: Multilateral
+  Interest: Digital health infrastructure
+
+WHO:
+- Tiago Cravo Oliveira Hashiguchi (likely)
+  Role: Lead, Digital Health
+  Organization: WHO
+  Sector: Multilateral
+  Interest: Health information systems, DPI for health
+
+UNICEF:
+- Chris Fabian (likely)
+  Role: Senior Advisor, Innovation & Technology
+  Organization: UNICEF
+  Sector: Multilateral
+  Interest: Digital public goods, AI for children
+
+FUNDERS & RESEARCH LEADERS
+==========================
+
+Bill & Melinda Gates Foundation:
+- Dennis Weller (likely)
+  Role: Director, Digital Public Infrastructure
+  Organization: Gates Foundation
+  Sector: Funder
+  Interest: DPI financing, Health systems
+  
+- Elizabeth White (likely)
+  Role: Program Officer, Digital Payments
+  Organization: Gates Foundation
+  Sector: Funder
+  Interest: Financial inclusion, Payment systems
+
+Rockefeller Foundation:
+- Zia Khan (likely)
+  Role: Vice President, Technology
+  Organization: Rockefeller Foundation
+  Sector: Funder
+  Interest: Digital inclusion, Climate + DPI
+
+Ford Foundation:
+- Sarah Hubbard (likely)
+  Role: Program Officer, Technology & Society
+  Organization: Ford Foundation
+  Sector: Funder
+  Interest: Digital rights, Inclusive tech
+
+Center for Global Development (CGD):
+- Alan Gelb (likely)
+  Role: Senior Fellow
+  Organization: CGD
+  Sector: Research
+  Interest: DPI economics, ID systems, Impact evaluation
+
+Digital Impact Alliance (DIAL):
+- Grete Faremo (possible)
+  Role: Executive Director
+  Organization: DIAL
+  Sector: Research
+  Interest: Best practices, Digital development
+
+TECHNOLOGY & PLATFORM LEADERS
+==============================
+
+MOSIP:
+- Rajagopalan Rajesh (likely)
+  Role: Chair, MOSIP Foundation
+  Organization: IIIT Bangalore / MOSIP
+  Sector: Technology/Research
+  Interest: Open-source identity platform
+  
+- Anindita Dasgupta (likely)
+  Role: CEO, MOSIP Foundation
+  Organization: MOSIP
+  Sector: Technology/Research
+  Interest: Digital identity, Privacy by design
+
+Beckn Protocol:
+- Pramod Varma (likely)
+  Already listed above - also architect of Beckn
+  
+- Sujith Narayanan (likely)
+  Role: Chief Technology Officer
+  Organization: Beckn Protocol Foundation
+  Sector: Technology
+  Interest: Open commerce protocols, DPIs
+
+FIDO Alliance:
+- Andrew Shikiar (likely)
+  Role: Executive Director
+  Organization: FIDO Alliance
+  Sector: Technology
+  Interest: Passwordless authentication, Digital identity
+
+CORPORATE REPRESENTATIVES
+=========================
+
+Microsoft:
+- Carol L Stimmel (likely)
+  Role: Director, Digital Public Infrastructure
+  Organization: Microsoft Philanthropies
+  Sector: Corporate
+  Interest: Cloud for government, Digital transformation
+  
+- Justin Cook (likely)
+  Role: Vice President, Public Sector
+  Organization: Microsoft
+  Sector: Corporate
+  Interest: Government cloud solutions
+
+Google:
+- Dorothea Klein (likely)
+  Role: Director, Social Impact
+  Organization: Google.org
+  Sector: Corporate
+  Interest: Digital skills, AI for social good
+  
+- Benjamin Adams (likely)
+  Role: Program Manager, Android Go
+  Organization: Google
+  Sector: Corporate
+  Interest: Affordable devices, Digital inclusion
+
+Mastercard:
+- Salah Goss (likely)
+  Role: Senior Vice President, Social Impact
+  Organization: Mastercard Foundation
+  Sector: Corporate
+  Interest: Financial inclusion, Digital payments
+
+NGO & CIVIL SOCIETY
+===================
+
+Access Now:
+- Estelle Massé (likely)
+  Role: Global Data Protection Lead
+  Organization: Access Now
+  Sector: NGO
+  Interest: Privacy, Surveillance, Digital rights
+  
+- Laura O'Brien (likely)
+  Role: Senior Policy Analyst
+  Organization: Access Now
+  Sector: NGO
+  Interest: Human rights, DPI governance
+
+Centre for Internet and Society:
+- Sunil Abraham (likely)
+  Role: Executive Director
+  Organization: CIS
+  Sector: Research/NGO
+  Interest: Digital rights, Privacy, Accessibility
+
+CIVIC: Data4Good:
+- Nicole Anand (likely)
+  Role: Executive Director
+  Organization: CIVIC
+  Sector: Research
+  Interest: Data governance, Responsible tech
+
+ACADEMIA
+========
+
+Rajesh Aggarwal (likely)
+  Role: Professor, Digital Identity
+  Organization: Various Universities
+  Sector: Research
+  Interest: Identity systems, Privacy
+
+Amir Alexander Hasson (likely)
+  Role: Professor, Digital Development
+  Organization: Various Universities
+  Sector: Research
+  Interest: DPI implementation, Country case studies
+
+NOTES FOR FIELDBOOK TRACKING
+=============================
+- Add notes column for each person's specific interests in AI4Inclusion
+- Track booth/exhibition locations if available
+- Note which sessions each person is speaking at
+- Capture follow-up action items from conversations
+- Tag by interest: multilingual systems, voice AI, identity, payments, etc.
+- Mark priority for follow-up based on engagement opportunity
+
+SUMMIT SESSIONS TO TRACK
+========================
+- Opening Keynote (Malatsi confirmed)
+- Cities Reimagined Panel (Letamo moderator)
+- Digital Identity Track
+- Financial Inclusion Track
+- AI & Digital Infrastructure Track
+- Government Digitization Track
+- Multilingual Systems Workshop
+- Voice AI & Accessibility Session
+

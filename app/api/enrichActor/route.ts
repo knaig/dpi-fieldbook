@@ -128,29 +128,41 @@ Focus on: Digital inclusion, multilingual systems, voice AI, and how it relates 
 
 async function fetchLinkedInProfile(name: string, role: string): Promise<any> {
   try {
-    const linkedinUrls = generateLinkedInUrls(name);
+    // Search for LinkedIn profile using web search
+    const searchUrl = await searchLinkedInProfile(name);
+    if (searchUrl) {
+      return { 
+        profileUrl: searchUrl, 
+        headline: role,
+        found: true 
+      };
+    }
     
-    for (const url of linkedinUrls.slice(0, 3)) {
+    // Try common LinkedIn URL patterns
+    const cleanName = name.replace(/[.,]/g, '').toLowerCase().replace(/\s+/g, '-');
+    const commonPatterns = [
+      `https://linkedin.com/in/${cleanName}`,
+      `https://www.linkedin.com/in/${cleanName}`,
+    ];
+    
+    for (const url of commonPatterns) {
       try {
-        const response = await fetch(url, {
-          headers: { 'User-Agent': 'Mozilla/5.0' },
-          timeout: 3000,
-          signal: AbortSignal.timeout(3000)
+        const testResponse = await fetch(url, {
+          method: 'HEAD',
+          redirect: 'follow',
+          timeout: 2000,
+          signal: AbortSignal.timeout(2000)
         });
         
-        if (response.ok || response.redirected) {
-          return { profileUrl: url, headline: role };
+        // If we get redirected or 200, profile exists
+        if (testResponse.ok || testResponse.redirected || testResponse.status < 400) {
+          return { profileUrl: url, headline: role, found: true };
         }
-      } catch (error) {
+      } catch (e) {
         continue;
       }
     }
     
-    // Try search
-    const searchUrl = await searchLinkedInProfile(name);
-    if (searchUrl) {
-      return { profileUrl: searchUrl, headline: role };
-    }
   } catch (error) {
     console.error('LinkedIn fetch error:', error);
   }
@@ -188,19 +200,53 @@ function generateLinkedInUrls(name: string): string[] {
 
 async function searchLinkedInProfile(name: string): Promise<string | null> {
   try {
-    const searchQuery = `site:linkedin.com/in ${name}`;
-    const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(searchQuery)}`;
+    // Try multiple search strategies
+    const searchQueries = [
+      `"${name}" linkedin.com/in`,
+      `site:linkedin.com/in "${name}"`,
+      `${name} linkedin profile`,
+    ];
     
-    const response = await fetch(searchUrl, {
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-      timeout: 3000,
-      signal: AbortSignal.timeout(3000)
-    });
+    for (const query of searchQueries) {
+      try {
+        // Try DuckDuckGo search
+        const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
+        
+        const response = await fetch(searchUrl, {
+          headers: { 
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'text/html'
+          },
+          timeout: 5000,
+          signal: AbortSignal.timeout(5000)
+        });
 
-    if (response.ok) {
-      const html = await response.text();
-      const match = html.match(/https:\/\/[^"]*linkedin\.com\/in\/[^"]*/);
-      return match ? match[0] : null;
+        if (response.ok) {
+          const html = await response.text();
+          
+          // Look for LinkedIn URLs in the HTML
+          const patterns = [
+            /https:\/\/[^"]*linkedin\.com\/in\/[a-zA-Z0-9-]+/g,
+            /linkedin\.com\/in\/[a-zA-Z0-9-]+/g,
+          ];
+          
+          for (const pattern of patterns) {
+            const matches = html.match(pattern);
+            if (matches && matches.length > 0) {
+              // Get the first valid LinkedIn URL
+              for (const match of matches) {
+                if (match.startsWith('http')) {
+                  return match;
+                } else if (match.startsWith('linkedin')) {
+                  return `https://${match}`;
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        continue;
+      }
     }
   } catch (error) {
     console.error('LinkedIn search error:', error);
@@ -210,19 +256,52 @@ async function searchLinkedInProfile(name: string): Promise<string | null> {
 
 async function searchXProfile(name: string): Promise<string | null> {
   try {
-    const searchQuery = `site:twitter.com OR site:x.com ${name}`;
-    const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(searchQuery)}`;
+    // Try multiple search strategies for X/Twitter
+    const searchQueries = [
+      `"${name}" site:twitter.com`,
+      `"${name}" site:x.com`,
+      `${name} twitter profile`,
+      `${name} x.com profile`,
+    ];
     
-    const response = await fetch(searchUrl, {
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-      timeout: 3000,
-      signal: AbortSignal.timeout(3000)
-    });
+    for (const query of searchQueries) {
+      try {
+        const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
+        
+        const response = await fetch(searchUrl, {
+          headers: { 
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'text/html'
+          },
+          timeout: 5000,
+          signal: AbortSignal.timeout(5000)
+        });
 
-    if (response.ok) {
-      const html = await response.text();
-      const match = html.match(/https:\/\/(?:twitter|x)\.com\/[a-zA-Z0-9_]+/);
-      return match ? match[0] : null;
+        if (response.ok) {
+          const html = await response.text();
+          
+          // Look for Twitter/X URLs
+          const patterns = [
+            /https:\/\/(?:twitter|x)\.com\/[a-zA-Z0-9_]+/g,
+            /(?:twitter|x)\.com\/[a-zA-Z0-9_]+/g,
+          ];
+          
+          for (const pattern of patterns) {
+            const matches = html.match(pattern);
+            if (matches && matches.length > 0) {
+              for (const match of matches) {
+                if (match.startsWith('http')) {
+                  return match;
+                } else if (match.includes('twitter.com') || match.includes('x.com')) {
+                  return `https://${match}`;
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        continue;
+      }
     }
   } catch (error) {
     console.error('X search error:', error);

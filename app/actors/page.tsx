@@ -50,12 +50,17 @@ export default function ActorsPage() {
 
   const sectors = Array.from(new Set(actors.map(a => a.sector)));
 
-  const filteredActors = actors.filter(actor => {
-    if (sectorFilter !== 'all' && actor.sector !== sectorFilter) return false;
-    if (actor.followupScore < minFollowupScore) return false;
-    if (showNotSpokenOnly && actor.spokenTo) return false;
-    return true;
-  });
+  const filteredActors = actors
+    .filter(actor => {
+      if (sectorFilter !== 'all' && actor.sector !== sectorFilter) return false;
+      if (actor.followupScore < minFollowupScore) return false;
+      if (showNotSpokenOnly && actor.spokenTo) return false;
+      return true;
+    })
+    .filter((actor, index, self) => 
+      // Remove duplicates by checking if this is the first occurrence of this ID
+      index === self.findIndex(a => a.id === actor.id)
+    );
 
   const getSectorColor = (sector: string) => {
     const colors: Record<string, string> = {

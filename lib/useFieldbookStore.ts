@@ -31,14 +31,29 @@ export function useFieldbookStore() {
     }
   }, [actors, isHydrated]);
 
-  const addActor = useCallback((actor: Omit<Actor, 'id'>) => {
-    const newActor: Actor = {
-      ...actor,
-      id: Date.now().toString(),
-    };
+  const addActor = useCallback((actor: Omit<Actor, 'id'> | Actor) => {
+    let newActor: Actor;
+    
+    // Check if actor already has an ID
+    if ('id' in actor && actor.id) {
+      // Check if this actor already exists
+      const existing = actors.find(a => a.id === actor.id);
+      if (existing) {
+        console.log(`Actor ${actor.name} already exists, not adding duplicate`);
+        return existing;
+      }
+      newActor = actor as Actor;
+    } else {
+      // Create new actor with unique ID
+      newActor = {
+        ...actor,
+        id: `actor-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      };
+    }
+    
     setActors(prev => [...prev, newActor]);
     return newActor;
-  }, []);
+  }, [actors]);
 
   const updateActor = useCallback((id: string, updates: Partial<Actor>) => {
     setActors(prev =>

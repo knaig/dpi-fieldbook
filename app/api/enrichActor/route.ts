@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
 
-// Initialize OpenAI - uses OPENAI_API_KEY from env
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+// Perplexity API configuration
+const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -19,9 +16,9 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Try OpenAI first if available
-    if (openai) {
-      const intelligence = await enrichWithOpenAI(
+    // Try Perplexity first if available
+    if (PERPLEXITY_API_KEY) {
+      const intelligence = await enrichWithPerplexity(
         actorName || '',
         actorRole,
         actorSector,
@@ -48,47 +45,64 @@ export async function GET(request: NextRequest) {
   }
 }
 
-async function enrichWithOpenAI(
+async function enrichWithPerplexity(
   name: string,
   role: string,
   sector: string,
   context: string
 ): Promise<any> {
-  if (!openai) throw new Error('OpenAI not initialized');
+  if (!PERPLEXITY_API_KEY) throw new Error('Perplexity API key not configured');
 
-  const prompt = `You are an expert in Digital Public Infrastructure (DPI) and ecosystem mapping for the AI4Inclusion initiative at CIVIC: Data4Good.
+  const query = `Analyze this actor at the DPI Summit 2025: ${name}, ${role} at ${sector}. Context: ${context}. 
 
-Analyze this actor at the DPI Summit 2025 and provide intelligence:
+Provide a detailed analysis of their role in digital public infrastructure ecosystem, their interest topics, what they need/want, engagement strategy for AI4Inclusion initiative, and how to leverage this relationship for multilingual voice AI in DPIs.
 
-Name: ${name}
-Role: ${role}
-Sector: ${sector}
-Context: ${context}
+Return a JSON object with: roleInEcosystem, interestTopics (array), wantsNeeds, engagementStrategy, leverageForAI4Inclusion.`;
 
-Extract and return ONLY a JSON object with these exact fields:
-{
-  "roleInEcosystem": "One sentence describing their role in DPI ecosystem",
-  "interestTopics": ["topic1", "topic2", "topic3"],
-  "publications": ["publication1", "publication2"],
-  "eventsAppeared": ["event1", "event2"],
-  "wantsNeeds": "What they likely want or need - funding, partnerships, technical support, etc.",
-  "engagementStrategy": "Specific strategy for how AI4Inclusion should engage with them",
-  "leverageForAI4Inclusion": "How AI4Inclusion can leverage this relationship for multilingual voice AI in DPIs"
-}
-
-Focus on: Digital inclusion, multilingual systems, voice AI, and how it relates to DPI implementation.`;
-
-  const completion = await openai.chat.completions.create({
-    model: 'gpt-4o-mini', // Cost-effective
-    messages: [{ role: 'user', content: prompt }],
-    response_format: { type: 'json_object' },
-    temperature: 0.7,
+  const response = await fetch('https://api.perplexity.ai/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: 'llama-3.1-sonar-small-128k-online',
+      messages: [
+        {
+          role: 'system',
+          content: 'You are an expert in Digital Public Infrastructure (DPI) and ecosystem mapping. Return structured JSON data only.',
+        },
+        {
+          role: 'user',
+          content: query,
+        },
+      ],
+      temperature: 0.7,
+      max_tokens: 1000,
+    }),
   });
 
-  const content = completion.choices[0]?.message?.content;
-  if (!content) throw new Error('No response from OpenAI');
+  if (!response.ok) {
+    throw new Error(`Perplexity API error: ${response.status}`);
+  }
 
-  const intelligence = JSON.parse(content);
+  const data = await response.json();
+  const content = data.choices[0]?.message?.content;
+  if (!content) throw new Error('No response from Perplexity');
+
+  // Try to parse JSON from the response
+  let intelligence;
+  try {
+    intelligence = JSON.parse(content);
+  } catch (e) {
+    // If not JSON, extract JSON object from text
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      intelligence = JSON.parse(jsonMatch[0]);
+    } else {
+      throw new Error('Could not extract JSON from Perplexity response');
+    }
+  }
 
   // Enhance with Tier 3 data sources
   const [imageUrl, scholarPublications, linkedinData, xData] = await Promise.allSettled([

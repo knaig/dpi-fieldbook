@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import type { Actor } from '@/types/actor';
+import { cleanupDuplicateActors } from './cleanupStorage';
 
 const STORAGE_KEY = 'dpi-fieldbook-actors';
 
@@ -15,7 +16,18 @@ export function useFieldbookStore() {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         try {
-          setActors(JSON.parse(stored));
+          const parsed = JSON.parse(stored);
+          // Clean up duplicates on load
+          const cleaned = cleanupDuplicateActors();
+          if (cleaned > 0) {
+            // Reload after cleanup
+            const fresh = localStorage.getItem(STORAGE_KEY);
+            if (fresh) {
+              setActors(JSON.parse(fresh));
+            }
+          } else {
+            setActors(parsed);
+          }
         } catch (e) {
           console.error('Failed to parse actors from localStorage', e);
         }

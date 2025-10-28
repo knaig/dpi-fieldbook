@@ -2,15 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Users, Lightbulb, Download, Import as ImportIcon, Sparkles } from 'lucide-react';
+import { Home, Users, Lightbulb, Download, Import as ImportIcon, RefreshCw } from 'lucide-react';
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: Home },
   { href: '/actors', label: 'Actors', icon: Users },
   { href: '/reflect', label: 'Reflect', icon: Lightbulb },
   { href: '/import', label: 'Import', icon: ImportIcon },
+  { href: '/enrich-all', label: 'Enrich All', icon: RefreshCw },
   { href: '/export', label: 'Export', icon: Download },
-  { href: '/init', label: 'Init', icon: Sparkles },
 ];
 
 export default function NavBar() {

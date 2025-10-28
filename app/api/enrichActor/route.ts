@@ -90,9 +90,15 @@ Focus on: Digital inclusion, multilingual systems, voice AI, and how it relates 
 
   const intelligence = JSON.parse(content);
 
-  // Also get profile image
+  // Enhance with Tier 3 data sources
   const imageUrl = await fetchProfileImage(name);
   if (imageUrl) intelligence.profileImage = imageUrl;
+
+  // Fetch real publications from Google Scholar
+  const scholarPublications = await fetchPublicationsFromScholar(name);
+  if (scholarPublications.length > 0 && (!intelligence.publications || intelligence.publications.length === 0)) {
+    intelligence.publications = scholarPublications;
+  }
 
   return intelligence;
 }
@@ -117,9 +123,15 @@ async function enrichWithWikipedia(name: string): Promise<any> {
         leverageForAI4Inclusion: generateLeverageFromContext(name, data.extract || ''),
       };
 
-      // Try to get image
+      // Enhance with Tier 3 data sources
       const imageUrl = await fetchProfileImage(name);
       if (imageUrl) intelligence.profileImage = imageUrl;
+
+      // Fetch publications from Google Scholar
+      const scholarPublications = await fetchPublicationsFromScholar(name);
+      if (scholarPublications.length > 0 && intelligence.publications.length === 0) {
+        intelligence.publications = scholarPublications;
+      }
 
       return intelligence;
     }
@@ -131,24 +143,126 @@ async function enrichWithWikipedia(name: string): Promise<any> {
 }
 
 async function fetchProfileImage(name: string): Promise<string | null> {
+  const sources = [
+    () => fetchWikipediaImage(name),
+    () => fetchGoogleScholarImage(name),
+    () => fetchProfessionalHeadshot(name),
+  ];
+
+  // Try each source in order
+  for (const source of sources) {
+    try {
+      const image = await source();
+      if (image) return image;
+    } catch (error) {
+      console.error('Image source error:', error);
+    }
+  }
+
+  return null;
+}
+
+async function fetchWikipediaImage(name: string): Promise<string | null> {
   try {
-    // Try Wikipedia first
-    const wikiResponse = await fetch(
+    const response = await fetch(
       `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
-      { timeout: 3000 }
+      { timeout: 3000, signal: AbortSignal.timeout(3000) }
     );
 
-    if (wikiResponse.ok) {
-      const data = await wikiResponse.json();
+    if (response.ok) {
+      const data = await response.json();
       if (data.thumbnail?.source) {
         return data.thumbnail.source;
       }
     }
   } catch (error) {
-    console.error('Image fetch error:', error);
+    console.error('Wikipedia image error:', error);
   }
-
   return null;
+}
+
+async function fetchGoogleScholarImage(name: string): Promise<string | null> {
+  try {
+    // Google Scholar profile images are embedded in pages
+    // We'll fetch the scholar page and look for profile images
+    const searchUrl = `https://scholar.google.com/citations?mauthors=${encodeURIComponent(name)}&view_op=search_authors&hl=en&oi=ao`;
+    
+    const response = await fetch(searchUrl, { 
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      },
+      timeout: 5000,
+      signal: AbortSignal.timeout(5000)
+    });
+
+    if (response.ok) {
+      const html = await response.text();
+      // Look for profile image patterns in Google Scholar HTML
+      const imageMatch = html.match(/src="([^"]+scholar.*jpg)"/i);
+      if (imageMatch && imageMatch[1]) {
+        return imageMatch[1].startsWith('http') ? imageMatch[1] : `https://scholar.google.com${imageMatch[1]}`;
+      }
+    }
+  } catch (error) {
+    console.error('Google Scholar image error:', error);
+  }
+  return null;
+}
+
+async function fetchProfessionalHeadshot(name: string): Promise<string | null> {
+  try {
+    // Try to construct professional headshot URLs from name patterns
+    // Many organizations maintain standard photo URLs
+    
+    // LinkedIn-style pattern (won't work without auth, but good template)
+    const patterns = [
+      `https://www.linkedin.com/in/${name.toLowerCase().replace(/\s+/g, '-')}`,
+      // Add more patterns as needed
+    ];
+    
+    // For now, return null - LinkedIn requires OAuth
+    return null;
+  } catch (error) {
+    console.error('Professional headshot error:', error);
+  }
+  return null;
+}
+
+// Enhanced function to fetch publications from Google Scholar
+async function fetchPublicationsFromScholar(name: string): Promise<string[]> {
+  try {
+    const searchQuery = encodeURIComponent(`${name} digital public infrastructure`);
+    const scholarUrl = `https://scholar.google.com/scholar?q=${searchQuery}`;
+    
+    const response = await fetch(scholarUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      },
+      timeout: 5000,
+      signal: AbortSignal.timeout(5000)
+    });
+
+    if (response.ok) {
+      const html = await response.text();
+      
+      // Extract publication titles from Google Scholar results
+      const pubPattern = /<h3 class="gs_rt[^"]*"><a[^>]*>([^<]+)<\/a><\/h3>/g;
+      const publications: string[] = [];
+      let match;
+      
+      while ((match = pubPattern.exec(html)) !== null && publications.length < 5) {
+        const title = match[1].trim();
+        if (title && title.length > 10) {
+          publications.push(title);
+        }
+      }
+      
+      return publications;
+    }
+  } catch (error) {
+    console.error('Google Scholar publications error:', error);
+  }
+  return [];
 }
 
 function extractTopicsFromText(text: string): string[] {

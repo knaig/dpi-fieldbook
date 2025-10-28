@@ -1,14 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useFieldbookStore } from '@/lib/useFieldbookStore';
 
 export default function ClearAndImportPage() {
   const [isImporting, setIsImporting] = useState(false);
+  const [hasRun, setHasRun] = useState(false);
   const { addActor, isHydrated } = useFieldbookStore();
   const router = useRouter();
+
+  useEffect(() => {
+    if (isHydrated && !hasRun && !isImporting) {
+      setHasRun(true);
+      handleClearAndImport();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHydrated]);
 
   const handleClearAndImport = async () => {
     if (isImporting) return;

@@ -47,9 +47,9 @@ const actors = [
 ];
 
 export async function POST() {
-  // Transform the actors into the proper Actor format
-  const transformedActors: Actor[] = actors.map(actor => ({
-    id: `actor-${Date.now()}-${Math.random()}`,
+  // Transform the actors into the proper Actor format with unique IDs
+  const transformedActors: Actor[] = actors.map((actor, index) => ({
+    id: `actor-${Date.now()}-${index}-${Math.random().toString(36).substr(2, 9)}`,
     name: actor.name,
     sector: actor.sector,
     motive: actor.context,

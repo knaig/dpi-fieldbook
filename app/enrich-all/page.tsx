@@ -30,7 +30,7 @@ export default function EnrichAllPage() {
         console.log(`Enriching ${i + 1}/${actors.length}: ${actor.name}`);
         
         const response = await fetch(
-          `/api/enrichActor?name=${encodeURIComponent(actor.name)}&role=${encodeURIComponent(actor.contactRole)}&sector=${encodeURIComponent(actor.sector)}&context=${encodeURIComponent(actor.summitContext || '')}`
+          `/api/enrichActor?id=${encodeURIComponent(actor.id)}&name=${encodeURIComponent(actor.name)}&role=${encodeURIComponent(actor.contactRole)}&sector=${encodeURIComponent(actor.sector)}&context=${encodeURIComponent(actor.summitContext || '')}`
         );
 
         if (response.ok) {

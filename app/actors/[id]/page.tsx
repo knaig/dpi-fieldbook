@@ -22,11 +22,14 @@ export default function ActorDetailPage() {
     if (!actor) return;
     setIsEnriching(true);
     try {
-      const res = await fetch(`/api/enrichActor?id=${actor.id}`);
+      const res = await fetch(
+        `/api/enrichActor?id=${actor.id}&name=${encodeURIComponent(actor.name)}&role=${encodeURIComponent(actor.contactRole)}&sector=${encodeURIComponent(actor.sector)}&context=${encodeURIComponent(actor.summitContext || '')}`
+      );
       const data = await res.json();
       mergeActorIntelligence(id, data);
-      toast.success('Profile updated');
+      toast.success('Profile updated with real intelligence');
     } catch (error) {
+      console.error('Enrichment error:', error);
       toast.error('Failed to enrich profile');
     } finally {
       setIsEnriching(false);
@@ -87,22 +90,34 @@ export default function ActorDetailPage() {
 
       <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-6">
         <div className="flex justify-between items-start mb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 mb-2">{actor.name}</h1>
-            <div className="flex items-center gap-2">
-              <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${getSectorColor(actor.sector)}`}
-              >
-                {actor.sector}
-              </span>
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                Score: {actor.followupScore}
-              </span>
-              {actor.spokenTo && (
-                <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
-                  ✓ Spoken
+          <div className="flex items-start gap-4">
+            {actor.profileImage && (
+              <img
+                src={actor.profileImage}
+                alt={actor.name}
+                className="w-20 h-20 rounded-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            )}
+            <div>
+              <h1 className="text-2xl font-bold text-slate-900 mb-2">{actor.name}</h1>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`px-3 py-1 rounded-full text-sm font-medium ${getSectorColor(actor.sector)}`}
+                >
+                  {actor.sector}
                 </span>
-              )}
+                <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                  Score: {actor.followupScore}
+                </span>
+                {actor.spokenTo && (
+                  <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                    ✓ Spoken
+                  </span>
+                )}
+              </div>
             </div>
           </div>
           {actor.booth && (

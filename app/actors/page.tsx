@@ -165,30 +165,42 @@ export default function ActorsPage() {
               className="block bg-white rounded-xl p-4 shadow-sm border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all"
             >
               <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-lg font-semibold text-slate-900">
-                      {actor.name}
-                    </h3>
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${getSectorColor(actor.sector)}`}
-                    >
-                      {actor.sector}
-                    </span>
-                    {actor.spokenTo && (
-                      <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                        ✓ Spoken
+                <div className="flex gap-3 flex-1">
+                  {actor.profileImage && (
+                    <img
+                      src={actor.profileImage}
+                      alt={actor.name}
+                      className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  )}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="text-lg font-semibold text-slate-900">
+                        {actor.name}
+                      </h3>
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${getSectorColor(actor.sector)}`}
+                      >
+                        {actor.sector}
                       </span>
+                      {actor.spokenTo && (
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                          ✓ Spoken
+                        </span>
+                      )}
+                    </div>
+                    {actor.booth && (
+                      <p className="text-sm text-slate-600 mb-1">Booth: {actor.booth}</p>
+                    )}
+                    {actor.notes && (
+                      <p className="text-sm text-slate-500 line-clamp-2">
+                        {actor.notes}
+                      </p>
                     )}
                   </div>
-                  {actor.booth && (
-                    <p className="text-sm text-slate-600 mb-1">Booth: {actor.booth}</p>
-                  )}
-                  {actor.notes && (
-                    <p className="text-sm text-slate-500 line-clamp-2">
-                      {actor.notes}
-                    </p>
-                  )}
                 </div>
                 <div className="text-right ml-4">
                   <div className="text-lg font-bold text-blue-600">

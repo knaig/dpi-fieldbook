@@ -1,46 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
+import OpenAI from 'openai';
+
+// Initialize OpenAI - uses OPENAI_API_KEY from env
+const openai = process.env.OPENAI_API_KEY
+  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  : null;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const actorId = searchParams.get('id');
   const actorName = searchParams.get('name');
+  const actorRole = searchParams.get('role') || '';
+  const actorSector = searchParams.get('sector') || '';
+  const actorContext = searchParams.get('context') || '';
 
   if (!actorId) {
     return NextResponse.json({ error: 'Actor ID required' }, { status: 400 });
   }
 
   try {
-    // Use web search to find real data about the actor
-    // This is a simplified version - you can enhance with OpenAI API or Claude for better extraction
-    
-    const searchTerm = actorName || 'DPI Summit speaker';
-    const searchResults = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(actorName || '')}`
-    );
-
-    let intelligence: any = {};
-
-    if (searchResults.ok) {
-      const data = await searchResults.json();
-      
-      intelligence = {
-        roleInEcosystem: data.extract || `${actorName} is a participant in the DPI ecosystem working on digital public infrastructure.`,
-        publications: [], // Would need to parse from Wikipedia or other sources
-        eventsAppeared: [],
-        interestTopics: extractTopicsFromText(data.extract || ''),
-        wantsNeeds: inferNeedsFromRole(actorName || '', data.extract || ''),
-        engagementStrategy: generateEngagementStrategy(actorName || '', data.extract || ''),
-        leverageForAI4Inclusion: generateLeverageFromContext(actorName || '', data.extract || ''),
-      };
-    } else {
-      // Fallback to intelligent generation based on name and any context
-      intelligence = generateIntelligenceFromName(actorName || '');
+    // Try OpenAI first if available
+    if (openai) {
+      const intelligence = await enrichWithOpenAI(
+        actorName || '',
+        actorRole,
+        actorSector,
+        actorContext
+      );
+      return NextResponse.json(intelligence);
     }
 
+    // Fallback to Wikipedia + pattern matching
+    const intelligence = await enrichWithWikipedia(actorName || '');
     return NextResponse.json(intelligence);
   } catch (error) {
     console.error('Enrichment error:', error);
-    // Return mock data as fallback
+    // Return fallback data
     return NextResponse.json({
       interestTopics: ['Digital Inclusion', 'Voice AI', 'Public Infrastructure'],
       publications: [],
@@ -51,6 +46,109 @@ export async function GET(request: NextRequest) {
       leverageForAI4Inclusion: 'Potential partnership on multilingual DPI systems.',
     });
   }
+}
+
+async function enrichWithOpenAI(
+  name: string,
+  role: string,
+  sector: string,
+  context: string
+): Promise<any> {
+  if (!openai) throw new Error('OpenAI not initialized');
+
+  const prompt = `You are an expert in Digital Public Infrastructure (DPI) and ecosystem mapping for the AI4Inclusion initiative at CIVIC: Data4Good.
+
+Analyze this actor at the DPI Summit 2025 and provide intelligence:
+
+Name: ${name}
+Role: ${role}
+Sector: ${sector}
+Context: ${context}
+
+Extract and return ONLY a JSON object with these exact fields:
+{
+  "roleInEcosystem": "One sentence describing their role in DPI ecosystem",
+  "interestTopics": ["topic1", "topic2", "topic3"],
+  "publications": ["publication1", "publication2"],
+  "eventsAppeared": ["event1", "event2"],
+  "wantsNeeds": "What they likely want or need - funding, partnerships, technical support, etc.",
+  "engagementStrategy": "Specific strategy for how AI4Inclusion should engage with them",
+  "leverageForAI4Inclusion": "How AI4Inclusion can leverage this relationship for multilingual voice AI in DPIs"
+}
+
+Focus on: Digital inclusion, multilingual systems, voice AI, and how it relates to DPI implementation.`;
+
+  const completion = await openai.chat.completions.create({
+    model: 'gpt-4o-mini', // Cost-effective
+    messages: [{ role: 'user', content: prompt }],
+    response_format: { type: 'json_object' },
+    temperature: 0.7,
+  });
+
+  const content = completion.choices[0]?.message?.content;
+  if (!content) throw new Error('No response from OpenAI');
+
+  const intelligence = JSON.parse(content);
+
+  // Also get profile image
+  const imageUrl = await fetchProfileImage(name);
+  if (imageUrl) intelligence.profileImage = imageUrl;
+
+  return intelligence;
+}
+
+async function enrichWithWikipedia(name: string): Promise<any> {
+  try {
+    const searchResults = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
+      { timeout: 3000 }
+    );
+
+    if (searchResults.ok) {
+      const data = await searchResults.json();
+
+      const intelligence: any = {
+        roleInEcosystem: data.extract || `${name} is a participant in the DPI ecosystem working on digital public infrastructure.`,
+        publications: [],
+        eventsAppeared: [],
+        interestTopics: extractTopicsFromText(data.extract || ''),
+        wantsNeeds: inferNeedsFromRole(name, data.extract || ''),
+        engagementStrategy: generateEngagementStrategy(name, data.extract || ''),
+        leverageForAI4Inclusion: generateLeverageFromContext(name, data.extract || ''),
+      };
+
+      // Try to get image
+      const imageUrl = await fetchProfileImage(name);
+      if (imageUrl) intelligence.profileImage = imageUrl;
+
+      return intelligence;
+    }
+  } catch (error) {
+    console.error('Wikipedia fetch error:', error);
+  }
+
+  return generateIntelligenceFromName(name);
+}
+
+async function fetchProfileImage(name: string): Promise<string | null> {
+  try {
+    // Try Wikipedia first
+    const wikiResponse = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
+      { timeout: 3000 }
+    );
+
+    if (wikiResponse.ok) {
+      const data = await wikiResponse.json();
+      if (data.thumbnail?.source) {
+        return data.thumbnail.source;
+      }
+    }
+  } catch (error) {
+    console.error('Image fetch error:', error);
+  }
+
+  return null;
 }
 
 function extractTopicsFromText(text: string): string[] {

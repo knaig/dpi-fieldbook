@@ -22,6 +22,7 @@ export type Actor = {
   leverageForAI4Inclusion?: string;
   summitContext?: string;
   summitSourceTags?: string[];
+  profileImage?: string;
 };
 
 export type CandidateActor = {

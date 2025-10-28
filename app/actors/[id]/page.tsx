@@ -296,6 +296,89 @@ export default function ActorDetailPage() {
         </div>
       </div>
 
+      {(actor.linkedinUrl || actor.xProfileUrl) && (
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-6">
+          <h2 className="text-lg font-semibold text-slate-900 mb-4">
+            Social Profiles
+          </h2>
+          
+          <div className="space-y-3">
+            {actor.linkedinUrl && (
+              <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-100">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-600 rounded flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">in</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-slate-900">LinkedIn</p>
+                    {actor.linkedinHeadline && (
+                      <p className="text-sm text-slate-600">{actor.linkedinHeadline}</p>
+                    )}
+                  </div>
+                </div>
+                <a
+                  href={actor.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                >
+                  View →
+                </a>
+              </div>
+            )}
+
+            {actor.xProfileUrl && (
+              <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-black rounded flex items-center justify-center">
+                    <span className="text-white font-bold text-xs">𝕏</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-slate-900">
+                      {actor.xHandle ? `@${actor.xHandle}` : 'X/Twitter'}
+                    </p>
+                    {actor.recentTweets && actor.recentTweets.length > 0 && (
+                      <p className="text-sm text-slate-600">
+                        {actor.recentTweets.length} recent mentions
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <a
+                  href={actor.xProfileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                >
+                  View →
+                </a>
+              </div>
+            )}
+
+            {actor.dpiTweets && actor.dpiTweets.length > 0 && (
+              <div className="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-100">
+                <p className="text-sm font-medium text-purple-900 mb-2">
+                  DPI-Related Posts ({actor.dpiTweets.length})
+                </p>
+                <div className="space-y-2">
+                  {actor.dpiTweets.slice(0, 3).map((tweet, i) => (
+                    <a
+                      key={i}
+                      href={tweet.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-sm text-purple-700 hover:text-purple-800"
+                    >
+                      View post →
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {actor.nextAction && (
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
           <h3 className="text-sm font-medium text-blue-900 mb-2">Next Action</h3>

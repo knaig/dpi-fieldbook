@@ -91,16 +91,143 @@ Focus on: Digital inclusion, multilingual systems, voice AI, and how it relates 
   const intelligence = JSON.parse(content);
 
   // Enhance with Tier 3 data sources
-  const imageUrl = await fetchProfileImage(name);
-  if (imageUrl) intelligence.profileImage = imageUrl;
+  const [imageUrl, scholarPublications, linkedinData, xData] = await Promise.allSettled([
+    fetchProfileImage(name),
+    fetchPublicationsFromScholar(name),
+    fetchLinkedInProfile(name, role),
+    fetchXProfileData(name, role, sector),
+  ]);
 
-  // Fetch real publications from Google Scholar
-  const scholarPublications = await fetchPublicationsFromScholar(name);
-  if (scholarPublications.length > 0 && (!intelligence.publications || intelligence.publications.length === 0)) {
-    intelligence.publications = scholarPublications;
+  if (imageUrl.status === 'fulfilled' && imageUrl.value) {
+    intelligence.profileImage = imageUrl.value;
+  }
+
+  if (scholarPublications.status === 'fulfilled' && scholarPublications.value.length > 0) {
+    if (!intelligence.publications || intelligence.publications.length === 0) {
+      intelligence.publications = scholarPublications.value;
+    }
+  }
+
+  if (linkedinData.status === 'fulfilled' && linkedinData.value) {
+    intelligence.linkedinUrl = linkedinData.value.profileUrl;
+    intelligence.linkedinHeadline = linkedinData.value.headline;
+    if (linkedinData.value.image && !intelligence.profileImage) {
+      intelligence.profileImage = linkedinData.value.image;
+    }
+  }
+
+  if (xData.status === 'fulfilled' && xData.value) {
+    intelligence.xHandle = xData.value.handle;
+    intelligence.xProfileUrl = xData.value.profileUrl;
+    intelligence.recentTweets = xData.value.tweets;
+    intelligence.dpiTweets = xData.value.recentDPITweets;
   }
 
   return intelligence;
+}
+
+async function fetchLinkedInProfile(name: string, role: string): Promise<any> {
+  try {
+    const linkedinUrls = generateLinkedInUrls(name);
+    
+    for (const url of linkedinUrls.slice(0, 3)) {
+      try {
+        const response = await fetch(url, {
+          headers: { 'User-Agent': 'Mozilla/5.0' },
+          timeout: 3000,
+          signal: AbortSignal.timeout(3000)
+        });
+        
+        if (response.ok || response.redirected) {
+          return { profileUrl: url, headline: role };
+        }
+      } catch (error) {
+        continue;
+      }
+    }
+    
+    // Try search
+    const searchUrl = await searchLinkedInProfile(name);
+    if (searchUrl) {
+      return { profileUrl: searchUrl, headline: role };
+    }
+  } catch (error) {
+    console.error('LinkedIn fetch error:', error);
+  }
+  return null;
+}
+
+async function fetchXProfileData(name: string, role: string, sector: string): Promise<any> {
+  try {
+    const profileUrl = await searchXProfile(name);
+    if (profileUrl) {
+      const handleMatch = profileUrl.match(/twitter\.com\/([^/?]+)/);
+      return {
+        profileUrl,
+        handle: handleMatch ? handleMatch[1] : null,
+        tweets: [],
+        dpiTweets: [],
+      };
+    }
+  } catch (error) {
+    console.error('X fetch error:', error);
+  }
+  return null;
+}
+
+function generateLinkedInUrls(name: string): string[] {
+  const cleanName = name.replace(/[.,]/g, '').toLowerCase();
+  const parts = cleanName.split(/\s+/);
+  
+  return [
+    `${parts.join('-')}`,
+    `${parts[0]}-${parts.slice(1).join('')}`,
+    `${parts.join('')}`,
+  ];
+}
+
+async function searchLinkedInProfile(name: string): Promise<string | null> {
+  try {
+    const searchQuery = `site:linkedin.com/in ${name}`;
+    const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(searchQuery)}`;
+    
+    const response = await fetch(searchUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      timeout: 3000,
+      signal: AbortSignal.timeout(3000)
+    });
+
+    if (response.ok) {
+      const html = await response.text();
+      const match = html.match(/https:\/\/[^"]*linkedin\.com\/in\/[^"]*/);
+      return match ? match[0] : null;
+    }
+  } catch (error) {
+    console.error('LinkedIn search error:', error);
+  }
+  return null;
+}
+
+async function searchXProfile(name: string): Promise<string | null> {
+  try {
+    const searchQuery = `site:twitter.com OR site:x.com ${name}`;
+    const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(searchQuery)}`;
+    
+    const response = await fetch(searchUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      timeout: 3000,
+      signal: AbortSignal.timeout(3000)
+    });
+
+    if (response.ok) {
+      const html = await response.text();
+      const match = html.match(/https:\/\/(?:twitter|x)\.com\/[a-zA-Z0-9_]+/);
+      return match ? match[0] : null;
+    }
+  } catch (error) {
+    console.error('X search error:', error);
+  }
+  return null;
 }
 
 async function enrichWithWikipedia(name: string): Promise<any> {

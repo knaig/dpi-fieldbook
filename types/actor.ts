@@ -23,6 +23,12 @@ export type Actor = {
   summitContext?: string;
   summitSourceTags?: string[];
   profileImage?: string;
+  linkedinUrl?: string;
+  linkedinHeadline?: string;
+  xHandle?: string;
+  xProfileUrl?: string;
+  recentTweets?: Array<{ url: string; type: string }>;
+  dpiTweets?: Array<{ url: string; type: string }>;
 };
 
 export type CandidateActor = {

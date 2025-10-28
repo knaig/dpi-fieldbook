@@ -108,20 +108,29 @@ Focus on: Digital inclusion, multilingual systems, voice AI, and how it relates 
     }
   }
 
+  // Add LinkedIn data
   if (linkedinData.status === 'fulfilled' && linkedinData.value) {
     intelligence.linkedinUrl = linkedinData.value.profileUrl;
-    intelligence.linkedinHeadline = linkedinData.value.headline;
+    intelligence.linkedinHeadline = linkedinData.value.headline || role;
+    intelligence.linkedinLocation = linkedinData.value.location;
+    intelligence.linkedinConnections = linkedinData.value.connections;
+    intelligence.linkedinExperience = linkedinData.value.experience || [];
+    intelligence.linkedinEducation = linkedinData.value.education || [];
     if (linkedinData.value.image && !intelligence.profileImage) {
       intelligence.profileImage = linkedinData.value.image;
     }
   }
 
+  // Add X/Twitter data
   if (xData.status === 'fulfilled' && xData.value) {
     intelligence.xHandle = xData.value.handle;
     intelligence.xProfileUrl = xData.value.profileUrl;
-    intelligence.recentTweets = xData.value.tweets;
-    intelligence.dpiTweets = xData.value.recentDPITweets;
+    intelligence.recentTweets = xData.value.tweets || [];
+    intelligence.dpiTweets = xData.value.recentDPITweets || [];
   }
+
+  // Add timestamp
+  intelligence.lastEnriched = new Date().toISOString();
 
   return intelligence;
 }

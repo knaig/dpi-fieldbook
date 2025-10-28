@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reset DPI Fieldbook Actors</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #b91c1c;
+    }
+    .success {
+      background: #10b981;
+      color: white;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔄 Reset DPI Fieldbook</h1>
+    <p>Click the button below to clear all actors and import fresh data (42 actors).</p>
+    <button onclick="resetActors()">Clear & Re-import All Actors</button>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    async function resetActors() {
+      const status = document.getElementById('status');
+      status.innerHTML = '<p>Clearing localStorage...</p>';
+      
+      try {
+        // Clear localStorage
+        localStorage.removeItem('dpi-fieldbook-actors');
+        
+        status.innerHTML = '<p>Importing fresh actors...</p>';
+        
+        // Fetch fresh actors
+        const response = await fetch('/api/importActors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Import actors
+          const actors = data.actors || [];
+          
+          actors.forEach(actor => {
+            const current = JSON.parse(localStorage.getItem('dpi-fieldbook-actors') || '[]');
+            current.push({
+              id: actor.id,
+              name: actor.name,
+              sector: actor.sector,
+              motive: actor.motive || '',
+              pitch: '',
+              inclusionScore: actor.inclusionScore,
+              followupScore: actor.followupScore,
+              spokenTo: false,
+              contactName: actor.contactName || actor.name,
+              contactRole: actor.contactRole,
+              notes: actor.notes || '',
+              nextAction: actor.nextAction || '',
+              buckets: actor.buckets || [],
+              summitContext: actor.summitContext,
+              summitSourceTags: actor.summitSourceTags || []
+            });
+            localStorage.setItem('dpi-fieldbook-actors', JSON.stringify(current));
+          });
+          
+          status.innerHTML = `
+            <div class="success">
+              <h3>✓ Success!</h3>
+              <p>Imported ${actors.length} actors successfully.</p>
+              <p><a href="/actors" style="color: white; text-decoration: underline;">Go to Actors →</a></p>
+            </div>
+          `;
+        } else {
+          status.innerHTML = '<p style="color: red;">Failed to import actors</p>';
+        }
+      } catch (error) {
+        status.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
+

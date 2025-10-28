@@ -11,13 +11,14 @@ export default function ClearAndImportPage() {
   const router = useRouter();
 
   const handleClearAndImport = async () => {
+    if (isImporting) return;
     setIsImporting(true);
     
     try {
       // Clear localStorage
       if (typeof window !== 'undefined') {
         localStorage.removeItem('dpi-fieldbook-actors');
-        console.log('Cleared localStorage');
+        console.log('✓ Cleared localStorage');
       }
       
       // Wait a moment
@@ -56,8 +57,8 @@ export default function ClearAndImportPage() {
           });
         }
         
-        toast.success(`Imported ${data.count} actors successfully!`);
-        setTimeout(() => router.push('/actors'), 2000);
+        toast.success(`✓ Imported ${data.count} actors successfully!`);
+        setTimeout(() => router.push('/actors'), 1500);
       } else {
         toast.error('Failed to import actors');
         setIsImporting(false);

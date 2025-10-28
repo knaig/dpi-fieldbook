@@ -101,15 +101,18 @@ Extract and return ONLY a JSON object with...
 
 ## Tier 3 Sources Status
 
-### Implemented
-- ✅ Wikipedia (images, bio)
-- ✅ OpenAI (intelligence extraction)
+### Implemented ✅
+- ✅ Wikipedia (images, bio) - Tier 1
+- ✅ OpenAI (intelligence extraction) - Tier 2
+- ✅ Google Scholar (publications, profile images) - Tier 3
+- ✅ DuckDuckGo (news, recent mentions) - Tier 3
+- ✅ Google Custom Search API (ready, requires API key) - Tier 3
+- ✅ Professional headshot framework (LinkedIn-ready) - Tier 3
 
 ### Available for Future
-- 🔲 LinkedIn (requires OAuth setup)
-- 🔲 Google Images API (requires API key)
-- 🔲 Google Scholar (for publications)
-- 🔲 X (Twitter) API (for recent activity)
+- 🔲 LinkedIn OAuth (framework ready)
+- 🔲 X (Twitter) API
+- 🔲 ResearchGate integration
 
 ## Configuration
 

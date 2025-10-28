@@ -25,10 +25,15 @@ export type Actor = {
   profileImage?: string;
   linkedinUrl?: string;
   linkedinHeadline?: string;
+  linkedinLocation?: string;
+  linkedinConnections?: string;
+  linkedinExperience?: Array<{ title: string; company: string; duration: string }>;
+  linkedinEducation?: Array<{ school: string; degree: string }>;
   xHandle?: string;
   xProfileUrl?: string;
   recentTweets?: Array<{ url: string; type: string }>;
   dpiTweets?: Array<{ url: string; type: string }>;
+  lastEnriched?: string;
 };
 
 export type CandidateActor = {

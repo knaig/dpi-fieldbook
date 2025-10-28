@@ -26,8 +26,14 @@ export default function ActorDetailPage() {
         `/api/enrichActor?id=${actor.id}&name=${encodeURIComponent(actor.name)}&role=${encodeURIComponent(actor.contactRole)}&sector=${encodeURIComponent(actor.sector)}&context=${encodeURIComponent(actor.summitContext || '')}`
       );
       const data = await res.json();
+      
+      // Log what we got
+      console.log('Enrichment result:', data);
+      
+      // Merge ALL fields including LinkedIn and X
       mergeActorIntelligence(id, data);
-      toast.success('Profile updated with real intelligence');
+      
+      toast.success('Profile updated with intelligence + LinkedIn + X');
     } catch (error) {
       console.error('Enrichment error:', error);
       toast.error('Failed to enrich profile');

@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Users, Lightbulb, Download, Import as ImportIcon, RefreshCw, Trash2, ShieldCheck } from 'lucide-react';
+import { Home, Users, Lightbulb, Download, Import as ImportIcon, RefreshCw, Trash2, ShieldCheck, BookOpen } from 'lucide-react';
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: Home },
   { href: '/actors', label: 'Actors', icon: Users },
+  { href: '/visitor-book', label: 'Visitor Book', icon: BookOpen },
   { href: '/validate', label: 'Validate', icon: ShieldCheck },
   { href: '/enrich-all', label: 'Enrich', icon: RefreshCw },
   { href: '/clear-and-import', label: 'Reset', icon: Trash2 },

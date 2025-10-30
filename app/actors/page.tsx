@@ -31,6 +31,10 @@ type Actor = {
   leverageForAI4Inclusion?: string;
   summitContext?: string;
   summitSourceTags?: string[];
+  profileImage?: string;
+  linkedinUrl?: string;
+  xHandle?: string;
+  xProfileUrl?: string;
 };
 
 export default function ActorsPage() {
@@ -200,6 +204,32 @@ export default function ActorsPage() {
                     {actor.booth && (
                       <p className="text-sm text-slate-600 mb-1">Booth: {actor.booth}</p>
                     )}
+                    <div className="flex items-center gap-2 mb-1">
+                      {actor.linkedinUrl && (
+                        <a
+                          href={actor.linkedinUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs hover:bg-blue-200 transition-colors"
+                          title="LinkedIn Profile"
+                        >
+                          <span className="font-bold">in</span>
+                        </a>
+                      )}
+                      {actor.xProfileUrl && (
+                        <a
+                          href={actor.xProfileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-900 text-white rounded text-xs hover:bg-slate-700 transition-colors"
+                          title={actor.xHandle ? `@${actor.xHandle}` : 'X Profile'}
+                        >
+                          <span className="font-bold">𝕏</span>
+                        </a>
+                      )}
+                    </div>
                     {actor.notes && (
                       <p className="text-sm text-slate-500 line-clamp-2">
                         {actor.notes}

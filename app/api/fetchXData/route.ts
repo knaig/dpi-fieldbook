@@ -69,7 +69,6 @@ async function searchXProfile(name: string): Promise<string | null> {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 
@@ -99,7 +98,6 @@ async function searchDPIOnX(name: string, sector: string): Promise<any[]> {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 
@@ -129,7 +127,6 @@ async function searchRecentMentions(name: string, role: string): Promise<any[]> 
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 

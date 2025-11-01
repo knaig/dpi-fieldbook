@@ -1,0 +1,667 @@
+[
+  {
+    "name": "Anand Varada",
+    "company": "Centre for Open Societal Systems",
+    "title": "Technical Architect - Country Engagements",
+    "country": "IN",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1756465853/h7umjdrapp4mzo2sdpns.jpg"
+  },
+  {
+    "name": "Aleksa Krolls",
+    "company": "OpenFn",
+    "title": "COO",
+    "country": "Latvia",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1752162926/h9h0csozdsz9i9k0v74k.jpg"
+  },
+  {
+    "name": "Simon De Haan",
+    "company": "Turn.io",
+    "title": "CTO & Co-Founder",
+    "country": "Netherlands",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761602087/nbf1kwduov5hbkttpncp.jpg"
+  },
+  {
+    "name": "Helena Forest",
+    "company": "Mastercard",
+    "title": "Executive Vice President",
+    "country": "United Kingdom",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761592576/tjo0tzkwivf8o3lwmwls.jpg"
+  },
+  {
+    "name": "Refilwe Mongale",
+    "company": "RTMC",
+    "title": "CEO",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761589272/snxjrodukxrufjdnukpi.jpg"
+  },
+  {
+    "name": "Fabiola Torres",
+    "company": "Fundaci\u00f3n Ciencia & Vida",
+    "title": "Journalist",
+    "country": "Chile",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761583391/nuatbc8txrqsizwooxj7.jpg"
+  },
+  {
+    "name": "Prosper Charles Mopiwa",
+    "company": "e- Government Department",
+    "title": "Principal Secretary",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761582778/tofmdj7fod76rsb9h5fv.jpg"
+  },
+  {
+    "name": "Phumla Phumla",
+    "company": "United Nations Development Programme",
+    "title": "Head: Inclusive Growth",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761581966/jhyuz3yczwndqrig5juc.jpg"
+  },
+  {
+    "name": "Tomas Seikus",
+    "company": "NRD Companies",
+    "title": "Business Development Director",
+    "country": "Lithuania",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761581390/yxa7kfanexkpchfenkof.jpg"
+  },
+  {
+    "name": "Adem Keddi",
+    "company": "Ministry of Health",
+    "title": "Digital Health Advisor",
+    "country": "Ethiopia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761581071/soymfyxlox8xpa5hdg3m.jpg"
+  },
+  {
+    "name": "Nozipho Tshabalala",
+    "company": "The Conversation Strategists",
+    "title": "CEO",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761579573/avzxpt2bnmgyz7ptwj51.jpg"
+  },
+  {
+    "name": "Benson Laurent Kansinjiro",
+    "company": "Ministry of Gender Community Development and Social Welfare",
+    "title": "Deputy Director of Social Welfare",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1721310564/ytc9c92pjluskdsr1uj3"
+  },
+  {
+    "name": "Laurent Benson Kansinjiro",
+    "company": "Malawi Government",
+    "title": "Deputy Director of Social Welfare",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761577954/umqdxutsmnmqjzhwxl48.jpg"
+  },
+  {
+    "name": "Ashly Hope",
+    "company": "Cenfri",
+    "title": "Senior Legal Associate",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761575462/wuo0ewrycuprblhshejw.jpg"
+  },
+  {
+    "name": "Djibo Idrissa",
+    "company": "NIGER TELECOMS",
+    "title": "Directeur general",
+    "country": "Niger",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761573941/wzte0cipfvl6ekbn2y9v.jpg"
+  },
+  {
+    "name": "Mboh Bless Pearl Nchongboh",
+    "company": "Carnegie Mellon University",
+    "title": "Research Associate",
+    "country": "Rwanda",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761573431/zsol799c5utbrzvxf7pe.png"
+  },
+  {
+    "name": "Ian Slater",
+    "company": "Mastercard",
+    "title": "Executive Vice President",
+    "country": "United Kingdom",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761573112/vrnvcocg3bjvskamzuim.jpg"
+  },
+  {
+    "name": "Sophie Bennani-Taylor",
+    "company": "Oxford Internet Institute",
+    "title": "Doctoral researcher",
+    "country": "United Kingdom",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761572945/mpq5lqve6f1w0kfq2gyr.jpg"
+  },
+  {
+    "name": "Valeria Ndapunikwa Mbango",
+    "company": "Bank of Namibia",
+    "title": "Director: Strategy, Projects and Transformation",
+    "country": "Namibia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761571425/ieljydz4ny1lpbbgir8u.jpg"
+  },
+  {
+    "name": "Brhane Giday",
+    "company": "Upanzi Network Carnegie Mellon University",
+    "title": "Research Associate of DPI",
+    "country": "Rwanda",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761568711/wnuvagwejcbdcily8l45.jpg"
+  },
+  {
+    "name": "Lu\u00e3 Cruz",
+    "company": "Idec - Institute for Consumer Protection",
+    "title": "Digital Rights Coordinator",
+    "country": "Brazil",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1719587213/nnogybd2vpzkn1iwydel"
+  },
+  {
+    "name": "Leonie Elleneeza Dunn",
+    "company": "BANK OF NAMIBIA",
+    "title": "Deputy Governor",
+    "country": "Namibia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761568194/faococxixoe0fobwxqlu.jpg"
+  },
+  {
+    "name": "Ishmael Kaunda",
+    "company": "Government",
+    "title": "Principal",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1721055977/vtffp3ubgy63h0qew3yt"
+  },
+  {
+    "name": "Dumisani Sondlo",
+    "company": "Department of Communications & Digital Technologies",
+    "title": "AI Policy Lead",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761566870/ezrzdeksomtdl2nmgorl.jpg"
+  },
+  {
+    "name": "Christiaan De Klerk",
+    "company": "Free State Department of Health",
+    "title": "Deputy Director ICT",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761566298/vb60naonb5hbvqhauduq.jpg"
+  },
+  {
+    "name": "Carlos Yerena",
+    "company": "Reach Digital Health",
+    "title": "Director, Strategy & Partnerships",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761566015/tgobmushqiouluy0tzty.jpg"
+  },
+  {
+    "name": "Solomon Kofi Richardson",
+    "company": "National information Technology Agency (NITA)",
+    "title": "Director, Technical Services",
+    "country": "Ghana",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761565578/rgv4pcafgcflumz96d7z.jpg"
+  },
+  {
+    "name": "Connie Francis Shirima",
+    "company": "National Identification Authority",
+    "title": "Director Management Information System",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761563769/miu0pqvdggstpa1ztx2o.jpg"
+  },
+  {
+    "name": "Sky Cope",
+    "company": "Clinton Health Access Initiative",
+    "title": "Associate",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761557145/lnhsxrljl9h9ayeuvg5j.jpg"
+  },
+  {
+    "name": "Mmaditshipi Seageng",
+    "company": "National School of Government",
+    "title": "Library Manager",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761559620/q0fi5mtzqwoxjzkpaf3r.jpg"
+  },
+  {
+    "name": "Mohamed Mashaka",
+    "company": "Tanzania Ministry of Information, Communications, and Information Technology",
+    "title": "Director of Information Systems and Services Development",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761559043/bwg0zdsijrsdp8uhe8qe.jpg"
+  },
+  {
+    "name": "Myriam Said",
+    "company": "Office of the Prime Minister, Ethiopia",
+    "title": "Advisor",
+    "country": "Ethiopia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761556110/vwauj6vknl3fszxarpsc.jpg"
+  },
+  {
+    "name": "Paul Trueman",
+    "company": "Mastercard",
+    "title": "EVP Security Solutions",
+    "country": "United Kingdom",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761557450/tek4cyzwsmwmbby4kx5b.jpg"
+  },
+  {
+    "name": "Rahul Rishi",
+    "company": "EY LLP",
+    "title": "Partner",
+    "country": "India",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1725960254/uqqc61ohjqwzmn8cnt4n"
+  },
+  {
+    "name": "Marc De Decker",
+    "company": "Decode Development",
+    "title": "Business Development",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761551091/hxv2fpkhczxqpa0tbu58.jpg"
+  },
+  {
+    "name": "Qaqamba Matundu",
+    "company": "News24",
+    "title": "Journalist",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761546335/gze74sjsqq4tgompzqby.jpg"
+  },
+  {
+    "name": "Jagadish Babu",
+    "company": "EKSTEP FOUNDATION",
+    "title": "CHIEF OPERATING OFFICER",
+    "country": "India",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761546156/viaqdpqmj4vjici2teng.jpg"
+  },
+  {
+    "name": "Connie Francis Shirima",
+    "company": "National Identification Authority",
+    "title": "Director Management Information System",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761544739/vvykw7sioypixybjwg2a.jpg"
+  },
+  {
+    "name": "Edson Guyai",
+    "company": "National Identification Authority",
+    "title": "Director of Identity Management",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761540168/xfdi09amwuewwyrqriks.jpg"
+  },
+  {
+    "name": "Nasir Shinkafi",
+    "company": "Galaxy Backbone Limited",
+    "title": "Group Head, Technical Services",
+    "country": "Nigeria",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761510238/dfvhh9xlfcucx33wtfxa.jpg"
+  },
+  {
+    "name": "Lenah Chacha",
+    "company": "https://www.africa.engineering.cmu.edu/research/upanzi/index.html",
+    "title": "Technical Manager - Research Lab",
+    "country": "Kenya",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1758125578/ykctewtphu81xex539m1.jpg"
+  },
+  {
+    "name": "Dex Lonjezo Tione",
+    "company": "Africa Rising Tv",
+    "title": "Video Editor",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761490218/zw37lf0krjn7ja0dmdm7.jpg"
+  },
+  {
+    "name": "Jean Philbert Nsengimana",
+    "company": "Africa CDC",
+    "title": "Chief Digital Advisor",
+    "country": "Canada",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761478890/jtsbke7srkjaxosvi1k7.jpg"
+  },
+  {
+    "name": "Sanjay Suresh Kikla",
+    "company": "Technoforte Software Private Limited",
+    "title": "Director Sales",
+    "country": "India",
+    "photoUrl": "https:/res.cloudinary.com/bizzaboprod/image/upload/v1761478566/apwpfl23zon4tmc8maoy.jpg"
+  },
+  {
+    "name": "Namon Abe Andrea",
+    "company": "The Detourist",
+    "title": "Managing Director",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761470714/grgzrutwarqij7redggw.jpg"
+  },
+  {
+    "name": "Desmond Irabor",
+    "company": "Africa Rising TV",
+    "title": "African Correspondent",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761469913/w5sabeyaolkeiyk1mdfb.jpg"
+  },
+  {
+    "name": "Oliver Chikodzore",
+    "company": "Africa Rising TV",
+    "title": "Chief Technical Advisor",
+    "country": "South Africa",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761520386/wtslaj1ooeufccgmiq6i.jpg"
+  },
+  {
+    "name": "Tshimanga Musungayi Jean Rigobert",
+    "company": "Minist\u00e8re de linterieur, S\u00e9curit\u00e9, decentralisation et affaires coutumieres",
+    "title": "Secr\u00e9taire G\u00e9n\u00e9ral",
+    "country": "Congo, the Democratic Republic of the",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761465862/j21w3bagbuu4f3jiscw5.jpg"
+  },
+  {
+    "name": "Aleksa Krolls",
+    "company": "OpenFn",
+    "title": "COO",
+    "country": "Latvia",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1752162926/h9h0csozdsz9i9k0v74k.jpg"
+  },
+  {
+    "name": "Simon de Haan",
+    "company": "Turn.io",
+    "title": "CTO & Co-Founder",
+    "country": "Netherlands",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761602087/nbf1kwduov5hbkttpncp.jpg"
+  },
+  {
+    "name": "Helena Forest",
+    "company": "Mastercard",
+    "title": "Executive Vice President",
+    "country": "United Kingdom",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761592576/tjo0tzkwivf8o3lwmwls.jpg"
+  },
+  {
+    "name": "Refilwe Mongale",
+    "company": "RTMC",
+    "title": "CEO",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761589272/snxjrodukxrufjdnukpi.jpg"
+  },
+  {
+    "name": "Fabiola Torres",
+    "company": "Fundaci\u00f3n Ciencia & Vida",
+    "title": "Journalist",
+    "country": "Chile",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761583391/nuatbc8txrqsizwooxj7.jpg"
+  },
+  {
+    "name": "Prosper Charles Mopiwa",
+    "company": "e- Government Department",
+    "title": "Principal Secretary",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761582778/tofmdj7fod76rsb9h5fv.jpg"
+  },
+  {
+    "name": "Phumla Phumla",
+    "company": "United Nations Development Programme",
+    "title": "Head: Inclusive Growth",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761581966/jhyuz3yczwndqrig5juc.jpg"
+  },
+  {
+    "name": "Tomas Seikus",
+    "company": "NRD Companies",
+    "title": "Business Development Director",
+    "country": "Lithuania",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761581390/yxa7kfanexkpchfenkof.jpg"
+  },
+  {
+    "name": "Adem Keddi",
+    "company": "Ministry of Health",
+    "title": "Digital Health Advisor",
+    "country": "Ethiopia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761581071/soymfyxlox8xpa5hdg3m.jpg"
+  },
+  {
+    "name": "Nozipho Tshabalala",
+    "company": "The Conversation Strategists",
+    "title": "CEO",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761579573/avzxpt2bnmgyz7ptwj51.jpg"
+  },
+  {
+    "name": "Benson Laurent Kansinjiro",
+    "company": "Ministry of Gender Community Development and Social Welfare",
+    "title": "Deputy Director of Social Welfare",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1721310564/ytc9c92pjluskdsr1uj3"
+  },
+  {
+    "name": "Laurent Benson KANSINJIRO",
+    "company": "Malawi Government",
+    "title": "Deputy Director of Social Welfare",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761577954/umqdxutsmnmqjzhwxl48.jpg"
+  },
+  {
+    "name": "Ashly Hope",
+    "company": "Cenfri",
+    "title": "Senior Legal Associate",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761575462/wuo0ewrycuprblhshejw.jpg"
+  },
+  {
+    "name": "Djibo Idrissa",
+    "company": "NIGER TELECOMS",
+    "title": "Directeur general",
+    "country": "Niger",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761573941/wzte0cipfvl6ekbn2y9v.jpg"
+  },
+  {
+    "name": "Mboh Bless Pearl Nchongboh",
+    "company": "Carnegie Mellon University",
+    "title": "Research Associate",
+    "country": "Rwanda",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761573431/zsol799c5utbrzvxf7pe.png"
+  },
+  {
+    "name": "Ian Slater",
+    "company": "Mastercard",
+    "title": "Executive Vice President",
+    "country": "United Kingdom",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761573112/vrnvcocg3bjvskamzuim.jpg"
+  },
+  {
+    "name": "Sophie Bennani-Taylor",
+    "company": "Oxford Internet Institute",
+    "title": "Doctoral researcher",
+    "country": "United Kingdom",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761572945/mpq5lqve6f1w0kfq2gyr.jpg"
+  },
+  {
+    "name": "Valeria Ndapunikwa Mbango",
+    "company": "Bank of Namibia",
+    "title": "Director: Strategy, Projects and Transformation",
+    "country": "Namibia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761571425/ieljydz4ny1lpbbgir8u.jpg"
+  },
+  {
+    "name": "Brhane Giday",
+    "company": "Upanzi Network Carnegie Mellon University",
+    "title": "Research Associate of DPI",
+    "country": "Rwanda",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761568711/wnuvagwejcbdcily8l45.jpg"
+  },
+  {
+    "name": "Lu\u00e3 Cruz",
+    "company": "Idec - Institute for Consumer Protection",
+    "title": "Digital Rights Coordinator",
+    "country": "Brazil",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1719587213/nnogybd2vpzkn1iwydel"
+  },
+  {
+    "name": "Leonie Elleneeza Dunn",
+    "company": "BANK OF NAMIBIA",
+    "title": "Deputy Governor",
+    "country": "Namibia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761568194/faococxixoe0fobwxqlu.jpg"
+  },
+  {
+    "name": "ISHMAEL KAUNDA",
+    "company": "Government",
+    "title": "Principal",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1721055977/vtffp3ubgy63h0qew3yt"
+  },
+  {
+    "name": "Dumisani Sondlo",
+    "company": "Department of Communications & Digital Technologies",
+    "title": "AI Policy Lead",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761566870/ezrzdeksomtdl2nmgorl.jpg"
+  },
+  {
+    "name": "Christiaan de Klerk",
+    "company": "Free State Department of Health",
+    "title": "Deputy Director ICT",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761566298/vb60naonb5hbvqhauduq.jpg"
+  },
+  {
+    "name": "Carlos Yerena",
+    "company": "Reach Digital Health",
+    "title": "Director, Strategy & Partnerships",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761566015/tgobmushqiouluy0tzty.jpg"
+  },
+  {
+    "name": "Solomon Kofi Richardson",
+    "company": "National information Technology Agency (NITA)",
+    "title": "Director, Technical Services",
+    "country": "Ghana",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761565578/rgv4pcafgcflumz96d7z.jpg"
+  },
+  {
+    "name": "Connie Francis Shirima",
+    "company": "National Identification Authority",
+    "title": "Director Management Information System",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761563769/miu0pqvdggstpa1ztx2o.jpg"
+  },
+  {
+    "name": "Sky Cope",
+    "company": "Clinton Health Access Initiative",
+    "title": "Associate",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761557145/lnhsxrljl9h9ayeuvg5j.jpg"
+  },
+  {
+    "name": "Mmaditshipi Seageng",
+    "company": "National School of Government",
+    "title": "Library Manager",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761559620/q0fi5mtzqwoxjzkpaf3r.jpg"
+  },
+  {
+    "name": "Mohamed Mashaka",
+    "company": "Tanzania Ministry of Information, Communications, and Information Technology",
+    "title": "Director of Information Systems and Services Development",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761559043/bwg0zdsijrsdp8uhe8qe.jpg"
+  },
+  {
+    "name": "Myriam Said",
+    "company": "Office of the Prime Minister, Ethiopia",
+    "title": "Advisor",
+    "country": "Ethiopia",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761556110/vwauj6vknl3fszxarpsc.jpg"
+  },
+  {
+    "name": "Paul Trueman",
+    "company": "Mastercard",
+    "title": "EVP Security Solutions",
+    "country": "United Kingdom",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761557450/tek4cyzwsmwmbby4kx5b.jpg"
+  },
+  {
+    "name": "Rahul Rishi",
+    "company": "EY LLP",
+    "title": "Partner",
+    "country": "India",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1725960254/uqqc61ohjqwzmn8cnt4n"
+  },
+  {
+    "name": "Marc De Decker",
+    "company": "Decode Development",
+    "title": "Business Development",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761551091/hxv2fpkhczxqpa0tbu58.jpg"
+  },
+  {
+    "name": "Qaqamba Matundu",
+    "company": "News24",
+    "title": "Journalist",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761546335/gze74sjsqq4tgompzqby.jpg"
+  },
+  {
+    "name": "JAGADISH BABU",
+    "company": "EKSTEP FOUNDATION",
+    "title": "CHIEF OPERATING OFFICER",
+    "country": "India",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761546156/viaqdpqmj4vjici2teng.jpg"
+  },
+  {
+    "name": "Connie Francis Shirima",
+    "company": "National Identification Authority",
+    "title": "Director Management Information System",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761544739/vvykw7sioypixybjwg2a.jpg"
+  },
+  {
+    "name": "Edson GUYAI",
+    "company": "National Identification Authority",
+    "title": "Director of Identity Management",
+    "country": "Tanzania, United Republic of",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761540168/xfdi09amwuewwyrqriks.jpg"
+  },
+  {
+    "name": "Nasir Shinkafi",
+    "company": "Galaxy Backbone Limited",
+    "title": "Group Head, Technical Services",
+    "country": "Nigeria",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761510238/dfvhh9xlfcucx33wtfxa.jpg"
+  },
+  {
+    "name": "Lenah Chacha",
+    "company": "https://www.africa.engineering.cmu.edu/research/upanzi/index.html",
+    "title": "Technical Manager - Research Lab",
+    "country": "Kenya",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1758125578/ykctewtphu81xex539m1.jpg"
+  },
+  {
+    "name": "Dex Lonjezo Tione",
+    "company": "Africa Rising Tv",
+    "title": "Video Editor",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761490218/zw37lf0krjn7ja0dmdm7.jpg"
+  },
+  {
+    "name": "Jean Philbert Nsengimana",
+    "company": "Africa CDC",
+    "title": "Chief Digital Advisor",
+    "country": "Canada",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761478890/jtsbke7srkjaxosvi1k7.jpg"
+  },
+  {
+    "name": "Sanjay Suresh Kikla",
+    "company": "Technoforte Software Private Limited",
+    "title": "Director Sales",
+    "country": "India",
+    "photoUrl": "https:/res.cloudinary.com/bizzaboprod/image/upload/v1761478566/apwpfl23zon4tmc8maoy.jpg"
+  },
+  {
+    "name": "Namon Abe Andrea",
+    "company": "The Detourist",
+    "title": "Managing Director",
+    "country": "Malawi",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761470714/grgzrutwarqij7redggw.jpg"
+  },
+  {
+    "name": "Desmond Irabor",
+    "company": "Africa Rising TV",
+    "title": "African Correspondent",
+    "country": "South Africa",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761469913/w5sabeyaolkeiyk1mdfb.jpg"
+  },
+  {
+    "name": "Oliver Chikodzore",
+    "company": "Africa Rising TV",
+    "title": "Chief Technical Advisor",
+    "country": "South Africa",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761520386/wtslaj1ooeufccgmiq6i.jpg"
+  },
+  {
+    "name": "TSHIMANGA MUSUNGAYI Jean Rigobert",
+    "company": "Minist\u00e8re de linterieur, S\u00e9curit\u00e9, decentralisation et affaires coutumieres",
+    "title": "Secr\u00e9taire G\u00e9n\u00e9ral",
+    "country": "Congo, the Democratic Republic of the",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761465862/j21w3bagbuu4f3jiscw5.jpg"
+  }
+]

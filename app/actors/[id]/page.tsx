@@ -1,12 +1,13 @@
 'use client';
 
-import { use } from 'react';
+import { use, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useFieldbookStore } from '@/lib/useFieldbookStore';
-import { ArrowLeft, Edit2, Save, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Edit2, Save, RefreshCw, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import ActorChatbot from '@/components/ActorChatbot';
 
 export default function ActorDetailPage() {
   const params = useParams();
@@ -17,6 +18,26 @@ export default function ActorDetailPage() {
   const [isEditing, setIsEditing] = useState(false);
   const [localNotes, setLocalNotes] = useState(actor?.notes || '');
   const [isEnriching, setIsEnriching] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [showChatbot, setShowChatbot] = useState(false);
+
+  // Auto-save with debounce
+  useEffect(() => {
+    if (!isEditing || !localNotes) return;
+    
+    const timeoutId = setTimeout(() => {
+      if (localNotes !== actor?.notes) {
+        setIsSaving(true);
+        updateActor(id, { notes: localNotes });
+        setLastSaved(new Date());
+        setIsSaving(false);
+        toast.success('Notes auto-saved', { duration: 2000 });
+      }
+    }, 1000); // 1 second debounce
+
+    return () => clearTimeout(timeoutId);
+  }, [localNotes, isEditing, actor?.notes, id, updateActor]);
 
   const handleEnrich = async () => {
     if (!actor) return;
@@ -45,6 +66,7 @@ export default function ActorDetailPage() {
   const handleSaveNotes = () => {
     updateActor(id, { notes: localNotes });
     setIsEditing(false);
+    setLastSaved(new Date());
     toast.success('Notes saved');
   };
 
@@ -85,41 +107,41 @@ export default function ActorDetailPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
       <Link
         href="/actors"
-        className="flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6"
+        className="flex items-center gap-2 text-slate-600 hover:text-slate-900 active:text-slate-900 mb-4 sm:mb-6 touch-manipulation"
       >
         <ArrowLeft className="w-4 h-4" />
-        Back to Actors
+        <span className="text-sm sm:text-base">Back to Actors</span>
       </Link>
 
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-6">
-        <div className="flex justify-between items-start mb-4">
-          <div className="flex items-start gap-4">
+      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-slate-200 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
+          <div className="flex items-start gap-3 sm:gap-4 flex-1">
             {actor.profileImage && (
               <img
                 src={actor.profileImage}
                 alt={actor.name}
-                className="w-20 h-20 rounded-full object-cover"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
               />
             )}
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900 mb-2">{actor.name}</h1>
-              <div className="flex items-center gap-2">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2 break-words">{actor.name}</h1>
+              <div className="flex flex-wrap items-center gap-2">
                 <span
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${getSectorColor(actor.sector)}`}
+                  className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${getSectorColor(actor.sector)}`}
                 >
                   {actor.sector}
                 </span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                <span className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs sm:text-sm font-medium">
                   Score: {actor.followupScore}
                 </span>
                 {actor.spokenTo && (
-                  <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                  <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs sm:text-sm font-medium">
                     ✓ Spoken
                   </span>
                 )}
@@ -127,9 +149,9 @@ export default function ActorDetailPage() {
             </div>
           </div>
           {actor.booth && (
-            <div className="text-right">
-              <p className="text-sm text-slate-600">Booth</p>
-              <p className="text-lg font-semibold text-slate-900">{actor.booth}</p>
+            <div className="text-right sm:text-left sm:ml-4">
+              <p className="text-xs sm:text-sm text-slate-600">Booth</p>
+              <p className="text-base sm:text-lg font-semibold text-slate-900">{actor.booth}</p>
             </div>
           )}
         </div>
@@ -142,32 +164,39 @@ export default function ActorDetailPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-slate-900">My Notes</h2>
+      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-slate-200 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4">
+          <div>
+            <h2 className="text-base sm:text-lg font-semibold text-slate-900">My Notes</h2>
+            {isEditing && (isSaving || lastSaved) && (
+              <p className="text-xs text-slate-500 mt-1">
+                {isSaving ? 'Saving...' : lastSaved ? `Saved ${lastSaved.toLocaleTimeString()}` : ''}
+              </p>
+            )}
+          </div>
           {!isEditing ? (
             <button
               onClick={() => setIsEditing(true)}
-              className="flex items-center gap-2 px-3 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded-lg"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 active:bg-blue-100 rounded-lg touch-manipulation"
             >
               <Edit2 className="w-4 h-4" />
-              Edit
+              <span>Edit</span>
             </button>
           ) : (
             <div className="flex gap-2">
               <button
                 onClick={handleSaveNotes}
-                className="flex items-center gap-2 px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 touch-manipulation"
               >
                 <Save className="w-4 h-4" />
-                Save
+                <span>Save</span>
               </button>
               <button
                 onClick={() => {
                   setIsEditing(false);
                   setLocalNotes(actor.notes);
                 }}
-                className="px-3 py-1 text-sm border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50"
+                className="px-3 sm:px-4 py-2 text-sm border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 active:bg-slate-100 touch-manipulation"
               >
                 Cancel
               </button>
@@ -189,21 +218,30 @@ export default function ActorDetailPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-slate-900">
+      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-slate-200 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4">
+          <h2 className="text-base sm:text-lg font-semibold text-slate-900">
             Intelligence Profile
           </h2>
-          <button
-            onClick={handleEnrich}
-            disabled={isEnriching}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-slate-400 disabled:cursor-not-allowed transition-colors"
-          >
-            <RefreshCw
-              className={`w-4 h-4 ${isEnriching ? 'animate-spin' : ''}`}
-            />
-            {isEnriching ? 'Enriching...' : 'Enrich / Refresh Profile'}
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <button
+              onClick={() => setShowChatbot(true)}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors touch-manipulation text-sm"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Chat with AI</span>
+            </button>
+            <button
+              onClick={handleEnrich}
+              disabled={isEnriching}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 active:bg-purple-800 disabled:bg-slate-400 disabled:cursor-not-allowed transition-colors touch-manipulation text-sm"
+            >
+              <RefreshCw
+                className={`w-4 h-4 ${isEnriching ? 'animate-spin' : ''}`}
+              />
+              <span>{isEnriching ? 'Enriching...' : 'Enrich / Refresh'}</span>
+            </button>
+          </div>
         </div>
 
         <div className="space-y-4">
@@ -288,6 +326,193 @@ export default function ActorDetailPage() {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {/* Case Studies */}
+          {(actor as any).caseStudies && (actor as any).caseStudies.length > 0 && (
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-4 rounded-lg border border-blue-200">
+              <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                <span className="text-2xl">📊</span>
+                Recent Case Studies
+              </h3>
+              <div className="space-y-4">
+                {(actor as any).caseStudies.map((study: any, i: number) => (
+                  <div key={i} className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <h4 className="font-semibold text-slate-900 mb-2">{study.title}</h4>
+                    <p className="text-sm text-slate-700 mb-3">{study.description}</p>
+                    {study.impact && (
+                      <div className="mb-2">
+                        <span className="text-xs font-medium text-green-700 bg-green-50 px-2 py-1 rounded">
+                          🎯 Impact: {study.impact}
+                        </span>
+                      </div>
+                    )}
+                    {study.stakeholders && study.stakeholders.length > 0 && (
+                      <div className="mt-2">
+                        <p className="text-xs text-slate-500 mb-1">Stakeholders:</p>
+                        <div className="flex flex-wrap gap-1">
+                          {study.stakeholders.map((stakeholder: string, idx: number) => (
+                            <span
+                              key={idx}
+                              className="text-xs px-2 py-1 bg-blue-50 text-blue-700 rounded"
+                            >
+                              {stakeholder}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {study.year && (
+                      <p className="text-xs text-slate-400 mt-2">{study.year}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* NEW FIELDS - Recent Projects */}
+          {(actor as any).recentProjects && (actor as any).recentProjects.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Recent Projects
+              </h3>
+              <ul className="list-disc list-inside space-y-1">
+                {(actor as any).recentProjects.map((project: string, i: number) => (
+                  <li key={i} className="text-slate-900">
+                    {project}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Key Initiatives */}
+          {(actor as any).keyInitiatives && (actor as any).keyInitiatives.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Key Initiatives
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {(actor as any).keyInitiatives.map((initiative: string, i: number) => (
+                  <span
+                    key={i}
+                    className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm"
+                  >
+                    {initiative}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Potential Partnership Areas */}
+          {(actor as any).potentialPartnershipAreas && (actor as any).potentialPartnershipAreas.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Potential Partnership Areas
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {(actor as any).potentialPartnershipAreas.map((area: string, i: number) => (
+                  <span
+                    key={i}
+                    className="px-2 py-1 bg-green-100 text-green-700 rounded text-sm"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Current Focus */}
+          {(actor as any).currentFocus && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Current Focus
+              </h3>
+              <p className="text-slate-900">{(actor as any).currentFocus}</p>
+            </div>
+          )}
+
+          {/* Pain Points */}
+          {(actor as any).painPoints && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Pain Points
+              </h3>
+              <p className="text-slate-900">{(actor as any).painPoints}</p>
+            </div>
+          )}
+
+          {/* Expertise Areas */}
+          {(actor as any).expertiseAreas && (actor as any).expertiseAreas.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Expertise Areas
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {(actor as any).expertiseAreas.map((area: string, i: number) => (
+                  <span
+                    key={i}
+                    className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-sm"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Speaking Topics */}
+          {(actor as any).speakingTopics && (actor as any).speakingTopics.length > 0 && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Speaking Topics
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {(actor as any).speakingTopics.map((topic: string, i: number) => (
+                  <span
+                    key={i}
+                    className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-sm"
+                  >
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Recent News or Achievements */}
+          {(actor as any).recentNewsOrAchievements && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Recent News or Achievements
+              </h3>
+              <p className="text-slate-900">{(actor as any).recentNewsOrAchievements}</p>
+            </div>
+          )}
+
+          {/* Relevant Quotes */}
+          {(actor as any).relevantQuotes && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Relevant Quotes
+              </h3>
+              <div className="bg-slate-50 border-l-4 border-slate-400 p-4 italic text-slate-700">
+                "{(actor as any).relevantQuotes}"
+              </div>
+            </div>
+          )}
+
+          {/* Network Context */}
+          {(actor as any).networkContext && (
+            <div>
+              <h3 className="text-sm font-medium text-slate-600 mb-2">
+                Network Context
+              </h3>
+              <p className="text-slate-900">{(actor as any).networkContext}</p>
             </div>
           )}
 
@@ -389,6 +614,15 @@ export default function ActorDetailPage() {
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
           <h3 className="text-sm font-medium text-blue-900 mb-2">Next Action</h3>
           <p className="text-blue-800">{actor.nextAction}</p>
+        </div>
+      )}
+
+      {/* Chatbot Modal */}
+      {showChatbot && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+            <ActorChatbot actor={actor} onClose={() => setShowChatbot(false)} />
+          </div>
         </div>
       )}
     </div>

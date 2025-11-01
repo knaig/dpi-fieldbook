@@ -1,0 +1,202 @@
+[
+  {
+    "name": "H.E. Mr. Solly Malatsi",
+    "role": "Minister",
+    "sector": "Government"
+  },
+  {
+    "name": "Halima Letamo",
+    "role": "Panel Moderator",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "David Hutchison",
+    "role": "Digital Development",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Michelle Ringuette",
+    "role": "Country DPI Programs",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Srikanth Nadhamuni",
+    "role": "Open-source DPI",
+    "sector": "Research"
+  },
+  {
+    "name": "Tarun Wadhwa",
+    "role": "DPI Policy",
+    "sector": "Research"
+  },
+  {
+    "name": "Cosmas Zavazava",
+    "role": "Development",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Stefan Schweinfest",
+    "role": "Data Infrastructure",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Robert Opp",
+    "role": "Digital Transformation",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Pramod Varma",
+    "role": "Former UIDAI",
+    "sector": "Government"
+  },
+  {
+    "name": "R S Sharma",
+    "role": "Former Chairman TRAI",
+    "sector": "Government"
+  },
+  {
+    "name": "Karrie Karu",
+    "role": "e-Governance",
+    "sector": "Government"
+  },
+  {
+    "name": "Marten Kaevats",
+    "role": "Digital Transformation",
+    "sector": "Government"
+  },
+  {
+    "name": "Julian Kyula",
+    "role": "Financial Inclusion",
+    "sector": "Government"
+  },
+  {
+    "name": "Anir Chowdhury",
+    "role": "Citizen Services",
+    "sector": "Government"
+  },
+  {
+    "name": "Denis Villorente",
+    "role": "National ID",
+    "sector": "Government"
+  },
+  {
+    "name": "Karrie Karu",
+    "role": "e-Governance",
+    "sector": "Government"
+  },
+  {
+    "name": "Brian Ngo",
+    "role": "Immunization Data",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Elizabeth White",
+    "role": "Financial Inclusion",
+    "sector": "Funder"
+  },
+  {
+    "name": "Tiago Cravo Oliveira Hashiguchi",
+    "role": "Health Information",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Dennis Weller",
+    "role": "DPI Financing",
+    "sector": "Funder"
+  },
+  {
+    "name": "Zia Khan",
+    "role": "Digital Inclusion",
+    "sector": "Funder"
+  },
+  {
+    "name": "Chris Fabian",
+    "role": "Digital Public Goods",
+    "sector": "Multilateral"
+  },
+  {
+    "name": "Karrie Karu",
+    "role": "e-Governance",
+    "sector": "Government"
+  },
+  {
+    "name": "Alan Gelb",
+    "role": "DPI Economics",
+    "sector": "Research"
+  },
+  {
+    "name": "Rajagopalan Rajesh",
+    "role": "Open-source Identity",
+    "sector": "Research"
+  },
+  {
+    "name": "Sarah Hubbard",
+    "role": "Digital Rights",
+    "sector": "Funder"
+  },
+  {
+    "name": "Andrew Shikiar",
+    "role": "Passwordless Authentication",
+    "sector": "Research"
+  },
+  {
+    "name": "Sujith Narayanan",
+    "role": "Open Commerce Protocols",
+    "sector": "Research"
+  },
+  {
+    "name": "Anindita Dasgupta",
+    "role": "Digital Identity",
+    "sector": "Research"
+  },
+  {
+    "name": "Carol L Stimmel",
+    "role": "Cloud for Government",
+    "sector": "Corporate"
+  },
+  {
+    "name": "Benjamin Adams",
+    "role": "Affordable Devices",
+    "sector": "Corporate"
+  },
+  {
+    "name": "Dorothea Klein",
+    "role": "Digital Skills",
+    "sector": "Corporate"
+  },
+  {
+    "name": "Laura O'Brien",
+    "role": "Human Rights",
+    "sector": "NGO"
+  },
+  {
+    "name": "Salah Goss",
+    "role": "Financial Inclusion",
+    "sector": "Corporate"
+  },
+  {
+    "name": "Estelle Massé",
+    "role": "Privacy",
+    "sector": "NGO"
+  },
+  {
+    "name": "Amir Alexander Hasson",
+    "role": "DPI Implementation",
+    "sector": "Research"
+  },
+  {
+    "name": "Nicole Anand",
+    "role": "Data Governance",
+    "sector": "Research"
+  },
+  {
+    "name": "Rajesh Aggarwal",
+    "role": "Identity Systems",
+    "sector": "Research"
+  },
+  {
+    "name": "Karrie Karu",
+    "role": "e-Governance",
+    "sector": "Government"
+  }
+]

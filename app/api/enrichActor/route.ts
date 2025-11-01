@@ -16,22 +16,35 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    console.log(`[ENRICH] Starting enrichment for: ${actorName}, role: ${actorRole}, sector: ${actorSector}`);
+    console.log(`[ENRICH] PERPLEXITY_API_KEY exists: ${!!PERPLEXITY_API_KEY}`);
+    
     // Try Perplexity first if available
     if (PERPLEXITY_API_KEY) {
-      const intelligence = await enrichWithPerplexity(
-        actorName || '',
-        actorRole,
-        actorSector,
-        actorContext
-      );
-      return NextResponse.json(intelligence);
+      console.log('[ENRICH] Using Perplexity API');
+      try {
+        const intelligence = await enrichWithPerplexity(
+          actorName || '',
+          actorRole,
+          actorSector,
+          actorContext
+        );
+        console.log(`[ENRICH] Perplexity returned ${Object.keys(intelligence).length} fields`);
+        return NextResponse.json(intelligence);
+      } catch (perplexityError) {
+        console.error('[ENRICH] Perplexity error:', perplexityError);
+        console.log('[ENRICH] Falling back to Wikipedia');
+      }
+    } else {
+      console.log('[ENRICH] No Perplexity key found');
     }
 
+    console.log('[ENRICH] No Perplexity key, falling back to Wikipedia');
     // Fallback to Wikipedia + pattern matching
     const intelligence = await enrichWithWikipedia(actorName || '');
     return NextResponse.json(intelligence);
   } catch (error) {
-    console.error('Enrichment error:', error);
+    console.error('[ENRICH] Error:', error);
     // Return fallback data
     return NextResponse.json({
       interestTopics: ['Digital Inclusion', 'Voice AI', 'Public Infrastructure'],
@@ -53,11 +66,46 @@ async function enrichWithPerplexity(
 ): Promise<any> {
   if (!PERPLEXITY_API_KEY) throw new Error('Perplexity API key not configured');
 
-  const query = `Analyze this actor at the DPI Summit 2025: ${name}, ${role} at ${sector}. Context: ${context}. 
+  const query = `You are researching ${name}, who holds the position of ${role} in ${sector}. Context: ${context}.
 
-Provide a detailed analysis of their role in digital public infrastructure ecosystem, their interest topics, what they need/want, engagement strategy for AI4Inclusion initiative, and how to leverage this relationship for multilingual voice AI in DPIs.
+Please provide a comprehensive analysis of this person. Search the web for current information about their recent work, projects, publications, speaking engagements, initiatives, case studies, impact metrics, and activities related to Digital Public Infrastructure.
 
-Return a JSON object with: roleInEcosystem, interestTopics (array), wantsNeeds, engagementStrategy, leverageForAI4Inclusion.`;
+CRITICAL: For EACH field below that asks for case studies, projects, or initiatives, provide:
+1. The name/title of the case study/project/initiative
+2. Measurable impact (numbers, metrics, outcomes)
+3. Key stakeholders/organizations involved
+
+IMPORTANT: Return ONLY valid JSON, no other text. Use this exact structure:
+{
+  "roleInEcosystem": "detailed 2-3 sentence description of their current role and importance in digital public infrastructure",
+  "interestTopics": ["topic1", "topic2", "topic3", "topic4", "topic5"],
+  "recentProjects": ["Project Name: Impact (numbers/metrics) - Key Stakeholders: Org1, Org2"],
+  "keyInitiatives": ["Initiative Name: Impact description with metrics - Stakeholders: Org1, Org2, Org3"],
+  "caseStudies": [
+    {
+      "title": "Name of case study/project",
+      "description": "Detailed description of what was done",
+      "impact": "Specific measurable impact with numbers, metrics, outcomes",
+      "stakeholders": ["Organization 1", "Organization 2", "Organization 3"],
+      "year": "2024 or most recent year"
+    }
+  ],
+  "potentialPartnershipAreas": ["area of collaboration 1", "area 2", "area 3"],
+  "currentFocus": "what they are currently working on or focused on with specific project names (2-3 sentences)",
+  "painPoints": "key challenges or problems they are trying to solve with context (2-3 sentences)",
+  "expertiseAreas": ["their expertise area 1", "area 2", "area 3"],
+  "wantsNeeds": "what they need or want to achieve (2-3 sentences)",
+  "engagementStrategy": "specific detailed strategy for engaging this person with concrete talking points (3-4 sentences)",
+  "leverageForAI4Inclusion": "how to leverage this relationship for multilingual voice AI in DPIs with specific examples (3-4 sentences)",
+  "speakingTopics": ["topic they speak about 1", "topic 2"],
+  "recentNewsOrAchievements": "recent news, achievements, or notable work with specific details (2-3 sentences)",
+  "relevantQuotes": "any notable quotes or statements from them (1-2 sentences)",
+  "networkContext": "who they work with or are connected to, name specific organizations (2-3 sentences)",
+  "publications": ["specific publication title 1", "publication 2"],
+  "eventsAppeared": ["event name 1 with year", "event name 2 with year"]
+}
+
+Search for recent, specific, factual information. Include actual numbers, metrics, and organization names. Be comprehensive and detailed.`;
 
   const response = await fetch('https://api.perplexity.ai/chat/completions', {
     method: 'POST',
@@ -66,19 +114,19 @@ Return a JSON object with: roleInEcosystem, interestTopics (array), wantsNeeds, 
       'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
     },
     body: JSON.stringify({
-      model: 'llama-3.1-sonar-small-128k-online',
+      model: 'sonar',
       messages: [
         {
           role: 'system',
-          content: 'You are an expert in Digital Public Infrastructure (DPI) and ecosystem mapping. Return structured JSON data only.',
+          content: 'You are an expert in Digital Public Infrastructure (DPI) and ecosystem mapping. You must return ONLY valid JSON with ALL requested fields filled with specific, factual information.',
         },
         {
           role: 'user',
           content: query,
         },
       ],
-      temperature: 0.7,
-      max_tokens: 1000,
+    temperature: 0.7,
+    max_tokens: 4000,
     }),
   });
 
@@ -90,19 +138,28 @@ Return a JSON object with: roleInEcosystem, interestTopics (array), wantsNeeds, 
   const content = data.choices[0]?.message?.content;
   if (!content) throw new Error('No response from Perplexity');
 
+  console.log('[PERPLEXITY] Raw response length:', content.length);
+  console.log('[PERPLEXITY] First 200 chars:', content.substring(0, 200));
+
   // Try to parse JSON from the response
   let intelligence;
   try {
     intelligence = JSON.parse(content);
+    console.log('[PERPLEXITY] Successfully parsed JSON');
   } catch (e) {
+    console.log('[PERPLEXITY] Not pure JSON, trying to extract JSON object');
     // If not JSON, extract JSON object from text
     const jsonMatch = content.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
       intelligence = JSON.parse(jsonMatch[0]);
+      console.log('[PERPLEXITY] Extracted JSON from text');
     } else {
+      console.error('[PERPLEXITY] Could not extract JSON. Content:', content);
       throw new Error('Could not extract JSON from Perplexity response');
     }
   }
+  
+  console.log('[PERPLEXITY] Parsed intelligence has fields:', Object.keys(intelligence));
 
   // Enhance with Tier 3 data sources
   const [imageUrl, scholarPublications, linkedinData, xData] = await Promise.allSettled([
@@ -173,7 +230,6 @@ async function fetchLinkedInProfile(name: string, role: string): Promise<any> {
         const testResponse = await fetch(url, {
           method: 'HEAD',
           redirect: 'follow',
-          timeout: 2000,
           signal: AbortSignal.timeout(2000)
         });
         
@@ -240,7 +296,6 @@ async function searchLinkedInProfile(name: string): Promise<string | null> {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
             'Accept': 'text/html'
           },
-          timeout: 5000,
           signal: AbortSignal.timeout(5000)
         });
 
@@ -296,7 +351,6 @@ async function searchXProfile(name: string): Promise<string | null> {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
             'Accept': 'text/html'
           },
-          timeout: 5000,
           signal: AbortSignal.timeout(5000)
         });
 
@@ -336,7 +390,6 @@ async function enrichWithWikipedia(name: string): Promise<any> {
   try {
     const searchResults = await fetch(
       `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
-      { timeout: 3000 }
     );
 
     if (searchResults.ok) {
@@ -372,6 +425,7 @@ async function enrichWithWikipedia(name: string): Promise<any> {
 }
 
 async function fetchProfileImage(name: string): Promise<string | null> {
+  console.log(`[IMAGE] Fetching profile image for: ${name}`);
   const sources = [
     () => fetchWikipediaImage(name),
     () => fetchGoogleScholarImage(name),
@@ -382,78 +436,105 @@ async function fetchProfileImage(name: string): Promise<string | null> {
   for (const source of sources) {
     try {
       const image = await source();
-      if (image) return image;
+      if (image) {
+        console.log(`[IMAGE] Found image: ${image}`);
+        return image;
+      }
     } catch (error) {
-      console.error('Image source error:', error);
+      console.error(`[IMAGE] Image source error:`, error);
     }
   }
 
+  console.log(`[IMAGE] No image found for: ${name}`);
   return null;
 }
 
 async function fetchWikipediaImage(name: string): Promise<string | null> {
   try {
-    const response = await fetch(
+    // Try exact name first
+    let response = await fetch(
       `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
-      { timeout: 3000, signal: AbortSignal.timeout(3000) }
     );
+
+    if (!response.ok && name.includes('.')) {
+      // Try with common prefixes/suffixes
+      const nameWithPrefix = name.replace(/^(Mr\.|Ms\.|Mrs\.|Dr\.|Prof\.)\s*/i, '');
+      if (nameWithPrefix !== name) {
+        response = await fetch(
+          `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(nameWithPrefix)}`,
+        );
+      }
+    }
 
     if (response.ok) {
       const data = await response.json();
       if (data.thumbnail?.source) {
+        console.log(`[IMAGE] Wikipedia found: ${data.thumbnail.source}`);
         return data.thumbnail.source;
       }
     }
   } catch (error) {
-    console.error('Wikipedia image error:', error);
+    console.error('[IMAGE] Wikipedia image error:', error);
   }
   return null;
 }
 
 async function fetchGoogleScholarImage(name: string): Promise<string | null> {
   try {
-    // Google Scholar profile images are embedded in pages
-    // We'll fetch the scholar page and look for profile images
-    const searchUrl = `https://scholar.google.com/citations?mauthors=${encodeURIComponent(name)}&view_op=search_authors&hl=en&oi=ao`;
+    // Try DuckDuckGo image search for professional headshots
+    const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(`"${name}" professional photo headshot`)}`;
     
     const response = await fetch(searchUrl, { 
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 
     if (response.ok) {
       const html = await response.text();
-      // Look for profile image patterns in Google Scholar HTML
-      const imageMatch = html.match(/src="([^"]+scholar.*jpg)"/i);
-      if (imageMatch && imageMatch[1]) {
-        return imageMatch[1].startsWith('http') ? imageMatch[1] : `https://scholar.google.com${imageMatch[1]}`;
+      // Look for image URLs in search results (common professional photo hosting)
+      const imagePatterns = [
+        /src="(https:\/\/[^"]*\.(jpg|jpeg|png|webp)[^"]*)"/gi,
+        /src='(https:\/\/[^"]*\.(jpg|jpeg|png|webp)[^"]*)'/gi,
+      ];
+      
+      for (const pattern of imagePatterns) {
+        const match = html.match(pattern);
+        if (match && match[1] && !match[1].includes('logo') && !match[1].includes('icon')) {
+          console.log(`[IMAGE] Found via DuckDuckGo: ${match[1]}`);
+          return match[1];
+        }
       }
     }
   } catch (error) {
-    console.error('Google Scholar image error:', error);
+    console.error('[IMAGE] Google Scholar/DuckDuckGo image error:', error);
   }
   return null;
 }
 
 async function fetchProfessionalHeadshot(name: string): Promise<string | null> {
-  try {
-    // Try to construct professional headshot URLs from name patterns
-    // Many organizations maintain standard photo URLs
-    
-    // LinkedIn-style pattern (won't work without auth, but good template)
-    const patterns = [
-      `https://www.linkedin.com/in/${name.toLowerCase().replace(/\s+/g, '-')}`,
-      // Add more patterns as needed
-    ];
-    
-    // For now, return null - LinkedIn requires OAuth
-    return null;
-  } catch (error) {
-    console.error('Professional headshot error:', error);
+  // Manual curated images for known actors - add more as needed
+  const knownImages: Record<string, string> = {
+    'Doreen Bogdan-Martin': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/2025_Doreen_Bogdan-Martin_%28cropped%29.jpg/330px-2025_Doreen_Bogdan-Martin_%28cropped%29.jpg',
+    'Nandan Nilekani': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Nandan_M._Nilekani.jpg/330px-Nandan_M._Nilekani.jpg',
+    'Grete Faremo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Grete_Faremo_2016.png/330px-Grete_Faremo_2016.png',
+    'Justin Cook': 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/AWS_Logo.jpg/330px-AWS_Logo.jpg',
+    'Sunil Abraham': 'https://cis-india.org/files/sunil-abraham.jpg',
+  };
+
+  // Check if we have a known image
+  if (knownImages[name]) {
+    return knownImages[name];
   }
+
+  // Try to construct organization-based profile URLs
+  const orgProfiles: Record<string, { pattern: string; baseUrl: string }> = {
+    'UNICEF': { pattern: 'chris-fabian', baseUrl: 'https://www.unicef.org/staff' },
+    'UNDP': { pattern: 'grete-faremo', baseUrl: 'https://www.undp.org/staff' },
+    // Add more organizations as needed
+  };
+
   return null;
 }
 
@@ -467,7 +548,6 @@ async function fetchPublicationsFromScholar(name: string): Promise<string[]> {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 

@@ -47,7 +47,7 @@ async function fetchGoogleSearchResults(name: string, role: string, sector: stri
       return null;
     }
 
-    const response = await fetch(searchUrl, { timeout: 5000 });
+    const response = await fetch(searchUrl, { signal: AbortSignal.timeout(5000) });
     if (response.ok) {
       const data = await response.json();
       return {
@@ -73,7 +73,6 @@ async function fetchScholarData(name: string) {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 
@@ -120,7 +119,6 @@ async function fetchNewsResults(name: string, sector: string) {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 

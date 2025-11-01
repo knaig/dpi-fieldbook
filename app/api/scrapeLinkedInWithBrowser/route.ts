@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
 
     try {
       const page = await browser.newPage();
+      const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
       
       console.log('Navigating to LinkedIn...');
       await page.goto('https://www.linkedin.com', { waitUntil: 'networkidle0', timeout: 30000 });
@@ -33,14 +34,14 @@ export async function POST(request: NextRequest) {
       await page.type('input[aria-label="Search"]', searchQuery, { delay: 100 });
       await page.keyboard.press('Enter');
       
-      await page.waitForTimeout(2000);
+      await sleep(2000);
       
       // Try to filter by People
       try {
         const peopleButton = await page.$('button[aria-label="People"]');
         if (peopleButton) {
           await peopleButton.click();
-          await page.waitForTimeout(1000);
+          await sleep(1000);
         }
       } catch (e) {
         console.log('Could not find People filter');
@@ -56,7 +57,7 @@ export async function POST(request: NextRequest) {
         throw new Error('No search results found');
       }
       
-      await page.waitForTimeout(3000);
+      await sleep(3000);
       
       // Extract profile data
       const profileData = await page.evaluate(() => {
@@ -136,7 +137,7 @@ export async function POST(request: NextRequest) {
       try {
         console.log('Checking recent activity...');
         await page.goto(`${page.url()}recent-activity/`);
-        await page.waitForTimeout(2000);
+        await sleep(2000);
         
         const recentActivity = await page.evaluate(() => {
           const posts: any[] = [];

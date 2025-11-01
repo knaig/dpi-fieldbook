@@ -22,6 +22,12 @@ export type Actor = {
   leverageForAI4Inclusion?: string;
   summitContext?: string;
   summitSourceTags?: string[];
+  summitCompany?: string;
+  summitIndustry?: string;
+  summitSummary?: string;
+  summitCountry?: string;
+  summitCountryCode?: string;
+  summitWeb?: string;
   profileImage?: string;
   linkedinUrl?: string;
   linkedinHeadline?: string;
@@ -34,6 +40,23 @@ export type Actor = {
   recentTweets?: Array<{ url: string; type: string }>;
   dpiTweets?: Array<{ url: string; type: string }>;
   lastEnriched?: string;
+  recentProjects?: string[];
+  keyInitiatives?: string[];
+  potentialPartnershipAreas?: string[];
+  currentFocus?: string;
+  painPoints?: string;
+  expertiseAreas?: string[];
+  speakingTopics?: string[];
+  recentNewsOrAchievements?: string;
+  relevantQuotes?: string;
+  networkContext?: string;
+  caseStudies?: Array<{
+    title: string;
+    description: string;
+    impact: string;
+    stakeholders: string[];
+    year?: string;
+  }>;
 };
 
 export type CandidateActor = {

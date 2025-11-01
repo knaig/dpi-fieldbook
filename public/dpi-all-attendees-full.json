@@ -1,0 +1,41 @@
+[
+  {
+    "id": "36141973",
+    "name": "Nico Lueck",
+    "firstName": "Nico",
+    "lastName": "Lueck",
+    "company": "GovStack/GIZ",
+    "title": "Product Manager",
+    "countryCode": "DE",
+    "country": "Germany",
+    "web": "https://www.govstack.global/",
+    "industry": "Civil & Social Organization",
+    "photoUrl": "https://assets-ext.bizzabo.com/bizzaboprod/image/upload/f_auto,c_scale,c_crop,g_custom/v1723648867/vgcsjmzo77iqzroarvsk"
+  },
+  {
+    "id": "39273620",
+    "name": "Trevor Gowing",
+    "firstName": "Trevor",
+    "lastName": "Gowing",
+    "company": "Decode Development",
+    "title": "Co-Founder CEO",
+    "countryCode": "ZA",
+    "country": "South Africa",
+    "web": "https://www.decodedev.com",
+    "industry": "Computer Software / Systems Integrator",
+    "photoUrl": "https:/res.cloudinary.com/bizzaboprod/image/upload/v1761664718/zedmk6widz3cybhyodph.jpg"
+  },
+  {
+    "id": "39272345",
+    "name": "James Clark",
+    "firstName": "James",
+    "lastName": "Clark",
+    "company": "VERA Innovations",
+    "title": "Co-Founder & Tech Lead",
+    "countryCode": "ZA",
+    "country": "South Africa",
+    "web": "https://vera-id.io",
+    "industry": "Computer & Network Security",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/c_crop,g_custom,f_auto,q_auto:best/v1761668006/oboisoy1o0mp9e9ycwzq.jpg"
+  }
+]

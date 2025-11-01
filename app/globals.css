@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+/* Mobile and PWA optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  /* Support for safe area insets on iOS */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+body {
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  /* Improve touch scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch-friendly targets */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Safe area support for fixed elements */
+.safe-area-inset-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+}
+
+/* Improve text rendering on mobile */
+@media (max-width: 640px) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Prevent text size adjustment on iOS */
+@media screen and (max-device-width: 480px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useFieldbookStore } from '@/lib/useFieldbookStore';
-import { Target, Users, MessageSquare, TrendingUp } from 'lucide-react';
+import { Target, Users, MessageSquare, TrendingUp, Lightbulb, Building2, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Dashboard() {
@@ -64,6 +64,45 @@ export default function Dashboard() {
             <h3 className="text-sm text-slate-600">To Follow Up</h3>
           </div>
           <p className="text-2xl font-bold text-slate-900">{unanswered.length}</p>
+        </div>
+      </div>
+
+      {/* Smart Views */}
+      <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-8">
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Smart Views</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Link
+            href="/views/ai4inclusion"
+            className="p-4 border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all"
+          >
+            <Lightbulb className="w-6 h-6 text-yellow-600 mb-2" />
+            <h3 className="font-semibold text-slate-900 mb-1">AI4Inclusion</h3>
+            <p className="text-sm text-slate-600">Top candidates for AI for Inclusion initiatives</p>
+          </Link>
+          <Link
+            href="/views/followup-priority"
+            className="p-4 border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all"
+          >
+            <TrendingUp className="w-6 h-6 text-blue-600 mb-2" />
+            <h3 className="font-semibold text-slate-900 mb-1">Follow-up Priority</h3>
+            <p className="text-sm text-slate-600">Highest priority actors to engage</p>
+          </Link>
+          <Link
+            href="/views/recent-enrichment"
+            className="p-4 border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all"
+          >
+            <RefreshCw className="w-6 h-6 text-green-600 mb-2" />
+            <h3 className="font-semibold text-slate-900 mb-1">Recently Enriched</h3>
+            <p className="text-sm text-slate-600">Recently updated profiles</p>
+          </Link>
+          <Link
+            href="/views/organizations"
+            className="p-4 border border-slate-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all"
+          >
+            <Building2 className="w-6 h-6 text-purple-600 mb-2" />
+            <h3 className="font-semibold text-slate-900 mb-1">By Organization</h3>
+            <p className="text-sm text-slate-600">View actors grouped by organization</p>
+          </Link>
         </div>
       </div>
 

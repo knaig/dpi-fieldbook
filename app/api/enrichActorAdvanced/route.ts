@@ -46,10 +46,13 @@ export async function POST(request: NextRequest) {
 
 async function fetchWikipediaData(name: string) {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
     const response = await fetch(
       `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
-      { timeout: 3000 }
+      { signal: controller.signal }
     );
+    clearTimeout(timeoutId);
     if (response.ok) {
       const data = await response.json();
       return {
@@ -67,10 +70,13 @@ async function fetchWikipediaData(name: string) {
 async function fetchGoogleSearchData(name: string) {
   try {
     // Using DuckDuckGo for privacy-friendly search
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
     const response = await fetch(
       `https://api.duckduckgo.com/?q=${encodeURIComponent(name + ' DPI digital public infrastructure')}&format=json&no_html=1&skip_disambig=1`,
-      { timeout: 3000 }
+      { signal: controller.signal }
     );
+    clearTimeout(timeoutId);
     if (response.ok) {
       const data = await response.json();
       return {

@@ -33,20 +33,23 @@ export default function ClearAndImportPage() {
       // Wait a moment
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // Import fresh data
-      const res = await fetch('/api/importActors', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await res.json();
+      // Load all actors from storage.json
+      const storageRes = await fetch('/storage.json');
+      const storageData = await storageRes.json();
+      
+      const allActors = Object.values(storageData);
+      
+      const data = {
+        success: true,
+        actors: allActors,
+        count: allActors.length
+      };
       
       if (data.success && data.actors) {
         console.log(`Importing ${data.actors.length} actors...`);
         
         // Add each actor to the store
-        for (const actor of data.actors) {
+        for (const actor of data.actors as any[]) {
           addActor({
             id: actor.id,
             name: actor.name,
@@ -94,7 +97,7 @@ export default function ClearAndImportPage() {
       </h1>
       
       <p className="text-slate-600 mb-8">
-        This will clear all current actors and import fresh data for all 42 actors.
+        This will clear all current actors and import fresh data for all DPI Summit attendees (140+ actors).
       </p>
 
       <div className="bg-white rounded-xl p-8 shadow-sm border border-slate-200">

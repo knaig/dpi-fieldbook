@@ -81,7 +81,6 @@ async function fetchLinkedInProfile(url: string, name: string): Promise<any> {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       },
       redirect: 'follow',
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 
@@ -106,7 +105,6 @@ async function searchLinkedInProfile(name: string): Promise<string | null> {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      timeout: 5000,
       signal: AbortSignal.timeout(5000)
     });
 

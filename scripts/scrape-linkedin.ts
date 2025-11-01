@@ -20,6 +20,7 @@ async function scrapeLinkedInProfile(name: string, role?: string) {
   try {
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
+    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
     
     console.log('Navigating to LinkedIn...');
     await page.goto('https://www.linkedin.com');
@@ -36,16 +37,17 @@ async function scrapeLinkedInProfile(name: string, role?: string) {
     await page.type('input[aria-label="Search"]', searchQuery);
     await page.keyboard.press('Enter');
     
-    await page.waitForTimeout(2000);
+    await sleep(2000);
     
     // Click People filter
     try {
-      await page.click('button[aria-label="People"]', { timeout: 5000 });
+      await page.waitForSelector('button[aria-label="People"]', { timeout: 5000 });
+      await page.click('button[aria-label="People"]');
     } catch (e) {
       console.log('People filter not found, continuing...');
     }
     
-    await page.waitForTimeout(1000);
+    await sleep(1000);
     
     // Click first result
     console.log('Clicking first search result...');
@@ -58,14 +60,14 @@ async function scrapeLinkedInProfile(name: string, role?: string) {
       return null;
     }
     
-    await page.waitForTimeout(3000);
+    await sleep(3000);
     
     // Extract profile data
     console.log('Extracting profile data...');
     const profileData = await page.evaluate(() => {
-      const getText = (selector: string) => {
+      const getText = (selector: string, root?: Element) => {
         try {
-          const el = document.querySelector(selector);
+          const el = (root || document).querySelector(selector);
           return el?.textContent?.trim() || '';
         } catch {
           return '';
@@ -115,7 +117,7 @@ async function scrapeLinkedInProfile(name: string, role?: string) {
     // Get DPI-related recent activity
     console.log('Checking for DPI-related posts...');
     await page.goto(`${page.url()}recent-activity/`);
-    await page.waitForTimeout(2000);
+    await sleep(2000);
     
     const recentActivity = await page.evaluate(() => {
       const posts: any[] = [];

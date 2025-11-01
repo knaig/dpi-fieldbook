@@ -1,0 +1,58 @@
+[
+  {
+    "id": "35511110",
+    "name": "Luã Cruz",
+    "firstName": "Luã",
+    "lastName": "Cruz",
+    "company": "Idec - Institute for Consumer Protection",
+    "title": "Digital Rights Coordinator",
+    "countryCode": "BR",
+    "country": "Brazil",
+    "web": "https://linkedin.com/in/technolua",
+    "industry": "Civic & Social Organization",
+    "summary": "Hi, I'm Luã Cruz, Coordinator at the Idec, a leading Brazilian organization dedicated to consumer rights for over 37 years. I work on advocating for safer and more inclusive digital public infrastructure in Brazil, focusing on systems like Pix and Gov.Br. My role involves driving policy discussions both nationally and internationally, like the Pix Forum, G20, UN Universal Safeguards Iniatiative...",
+    "photoUrl": "https://www.linkedin.com/in/technolua/"
+  },
+  {
+    "id": "39234703",
+    "name": "Paul Trueman",
+    "firstName": "Paul",
+    "lastName": "Trueman",
+    "company": "Mastercard",
+    "title": "EVP Security Solutions",
+    "countryCode": "GB",
+    "country": "United Kingdom",
+    "web": "Mastercard.com",
+    "industry": "Financial Services",
+    "summary": "14 years in Financial services focussed on enabling trust through security solutions for the ecosystem as well as charting the digital evolution of the world.",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761557450/tek4cyzwsmwmbby4kx5b.jpg"
+  },
+  {
+    "id": "39156637",
+    "name": "Sanjay Suresh Kikla",
+    "firstName": "Sanjay Suresh",
+    "lastName": "Kikla",
+    "company": "Technoforte Software Private Limited",
+    "title": "Director Sales",
+    "countryCode": "IN",
+    "country": "India",
+    "web": "www.technoforte.co.in",
+    "industry": "Computer Software / Systems Integrator",
+    "summary": "Hi....my name is Sanjay. i am one of the C-Founders at Technoforte. Our company specilizes in software products development and related services. We are well entrenced in the DPI / DPG ecosystem and have closely worked with foundational ID technology providers like MOSIP, Keycloak and more. We work closely with other System Integration companies and Governments for such implementations.",
+    "photoUrl": "https:/res.cloudinary.com/bizzaboprod/image/upload/v1761478566/apwpfl23zon4tmc8maoy.jpg"
+  },
+  {
+    "id": "39198033",
+    "name": "Oliver Chikodzore",
+    "firstName": "Oliver",
+    "lastName": "Chikodzore",
+    "company": "Africa Rising TV",
+    "title": "Chief Technical Advisor",
+    "countryCode": "ZA",
+    "country": "South Africa",
+    "web": "",
+    "industry": "Media",
+    "summary": "Oliver Chikodzore: Speaker, Mentor, Investor Advising Boards on Strategic Innovation, Investor Relations & Deal Structuring, Regional Integration, Business Strategist, Author, Global Trade and Global Speaker Co-founder Africa Rising TV, Head of Strategy One Map Africa. Expert in executive placements, strategic alliances, and investment facilitation. Transforming companies with talent.",
+    "photoUrl": "https://res.cloudinary.com/bizzaboprod/image/upload/q_auto:best,c_crop,g_custom/v1761520386/wtslaj1ooeufccgmiq6i.jpg"
+  }
+]

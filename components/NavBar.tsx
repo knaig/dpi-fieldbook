@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Home, Users, Lightbulb, Download, Import as ImportIcon, RefreshCw, Trash2, ShieldCheck, Search, Building2, BookOpen } from 'lucide-react';
+import { Home, Users, Lightbulb, Download, Import as ImportIcon, RefreshCw, Trash2, ShieldCheck, Search, Building2, BookOpen, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const navItems = [
@@ -10,6 +10,7 @@ const navItems = [
   { href: '/actors', label: 'Actors', icon: Users },
   { href: '/search', label: 'Search', icon: Search },
   { href: '/organizations', label: 'Orgs', icon: Building2 },
+  { href: '/collaboration-wall', label: 'Collab Wall', icon: Sparkles },
   { href: '/visitor-book', label: 'Visitor Book', icon: BookOpen },
   { href: '/validate', label: 'Validate', icon: ShieldCheck },
 ];
